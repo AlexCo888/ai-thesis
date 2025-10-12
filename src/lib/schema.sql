@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS rag_chunks (
   page INTEGER NOT NULL,
   content TEXT NOT NULL,
   tokens INTEGER NOT NULL DEFAULT 0,
-  embedding VECTOR(3072) NOT NULL,
+  embedding VECTOR(1536) NOT NULL,
   metadata JSONB NOT NULL DEFAULT '{}'
 );
 

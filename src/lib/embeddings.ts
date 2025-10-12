@@ -1,7 +1,7 @@
 import { embedMany, embed } from 'ai';
 import { openai } from '@ai-sdk/openai';
 
-const EMBEDDING_MODEL = process.env.EMBEDDING_MODEL ?? 'text-embedding-3-large';
+const EMBEDDING_MODEL = process.env.EMBEDDING_MODEL ?? 'text-embedding-3-small';
 
 export async function embedTexts(values: string[]) {
   const { embeddings } = await embedMany({

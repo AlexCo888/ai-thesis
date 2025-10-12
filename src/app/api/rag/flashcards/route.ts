@@ -17,7 +17,7 @@ ${sources
   `.trim();
 
   const { text } = await generateText({
-    model: openai(process.env.GENERATION_MODEL || 'gpt-4o-mini'),
+    model: openai(process.env.GENERATION_MODEL || 'gpt-5-mini'),
     prompt
   });
 

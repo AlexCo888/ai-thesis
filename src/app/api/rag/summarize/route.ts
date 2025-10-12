@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     .join('\n\n---\n\n');
 
   const result = streamText({
-    model: openai(process.env.GENERATION_MODEL || 'gpt-4o-mini'),
+    model: openai(process.env.GENERATION_MODEL || 'gpt-5-mini'),
     system: `Summarize these pages of the thesis for a researcher. Include key findings, methods, definitions, and caveats. Use bullet points and keep citations like (p. X).`,
     prompt: context
   });

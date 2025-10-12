@@ -1,19 +1,25 @@
+import { config } from 'dotenv';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
+import { pathToFileURL } from 'node:url';
+import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist/legacy/build/pdf.mjs';
 import { embedTexts } from '../lib/embeddings';
 import { chunkPageText } from '../lib/chunk';
 import { sql } from '@vercel/postgres';
 
-const PDF_WORKER = require.resolve('pdfjs-dist/build/pdf.worker.js');
-GlobalWorkerOptions.workerSrc = PDF_WORKER;
+// Load .env.local
+config({ path: path.join(process.cwd(), '.env.local') });
+
+const PDF_WORKER = require.resolve('pdfjs-dist/legacy/build/pdf.worker.mjs');
+GlobalWorkerOptions.workerSrc = pathToFileURL(PDF_WORKER).href;
 
 const THESIS_PATH =
   process.env.THESIS_FILE_PATH || path.join(process.cwd(), 'public', 'thesis.pdf');
 
 /** Extract text per page using pdfjs-dist */
 async function extractPages(filePath: string): Promise<string[]> {
-  const data = await fs.readFile(filePath);
+  const buffer = await fs.readFile(filePath);
+  const data = new Uint8Array(buffer);
   const loadingTask = getDocument({ data });
   const pdf = await loadingTask.promise;
 

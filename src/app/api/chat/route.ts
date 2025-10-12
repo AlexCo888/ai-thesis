@@ -30,7 +30,7 @@ When relevant, reference specific page numbers. If you are unsure, say so.
   `.trim();
 
   const result = streamText({
-    model: openai(process.env.GENERATION_MODEL || 'gpt-4o-mini'),
+    model: openai(process.env.GENERATION_MODEL || 'gpt-5-mini'),
     system,
     // we keep the full chat so the assistant maintains continuity
     messages: convertToModelMessages(messages)

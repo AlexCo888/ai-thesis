@@ -1,6 +1,10 @@
+import { config } from 'dotenv';
 import { db } from '@vercel/postgres';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+
+// Load .env.local
+config({ path: path.join(process.cwd(), '.env.local') });
 
 async function main() {
   const ddl = await fs.readFile(path.join(process.cwd(), 'src', 'lib', 'schema.sql'), 'utf8');
