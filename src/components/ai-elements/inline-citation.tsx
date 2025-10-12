@@ -163,12 +163,27 @@ export const InlineCitationCarouselIndex = ({
       return;
     }
 
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
+    // Use requestAnimationFrame to defer setState calls (external system sync pattern)
+    const updateCarouselState = () => {
+      requestAnimationFrame(() => {
+        setCount(api.scrollSnapList().length);
+        setCurrent(api.selectedScrollSnap() + 1);
+      });
+    };
 
-    api.on("select", () => {
+    // Initial update
+    updateCarouselState();
+
+    // Listen for select events
+    const onSelect = () => {
       setCurrent(api.selectedScrollSnap() + 1);
-    });
+    };
+
+    api.on("select", onSelect);
+
+    return () => {
+      api.off("select", onSelect);
+    };
   }, [api]);
 
   return (

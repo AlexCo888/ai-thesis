@@ -14,7 +14,7 @@ import { MessageSquare } from 'lucide-react';
 
 import { useChat } from '@ai-sdk/react';
 import { DefaultChatTransport } from 'ai';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import SourcesPanel from './SourcesPanel';
 
 type RagSourceHeader = {
