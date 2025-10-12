@@ -13,7 +13,7 @@ pnpm i
 cp .env.example .env.local
 # Add your environment variables:
 # OPENAI_API_KEY=sk-...
-# POSTGRES_URL=postgres://user:password@host:port/dbname
+# POSTGRES_URL=postgres://user:password@host:port/dbname 
 ```
 
 ### 🧩 Install AI Elements Components
