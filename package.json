@@ -11,6 +11,7 @@
     "migrate": "pnpm exec tsx ./src/scripts/migrate.ts"
   },
   "dependencies": {
+    "@ai-sdk/google": "^2.0.20",
     "@ai-sdk/openai": "^2.0.49",
     "@ai-sdk/react": "^2.0.68",
     "@radix-ui/react-avatar": "^1.1.10",

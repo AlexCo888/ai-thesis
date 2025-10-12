@@ -1,4 +1,4 @@
-import { openai } from '@ai-sdk/openai';
+import { google } from '@ai-sdk/google';
 import { streamText } from 'ai';
 import { sql } from '@/lib/db';
 
@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     .join('\n\n---\n\n');
 
   const result = streamText({
-    model: openai(process.env.GENERATION_MODEL || 'gpt-5-mini'),
+    model: google(process.env.GENERATION_MODEL || 'gemini-2.5-flash-preview-09-2025'),
     system: `Summarize these pages of the thesis for a researcher. Include key findings, methods, definitions, and caveats. Use bullet points and keep citations like (p. X).`,
     prompt: context
   });

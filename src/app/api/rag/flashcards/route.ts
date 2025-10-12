@@ -1,4 +1,4 @@
-import { openai } from '@ai-sdk/openai';
+import { google } from '@ai-sdk/google';
 import { generateText } from 'ai';
 import { searchSimilar } from '@/lib/rag';
 
@@ -17,7 +17,7 @@ ${sources
   `.trim();
 
   const { text } = await generateText({
-    model: openai(process.env.GENERATION_MODEL || 'gpt-5-mini'),
+    model: google(process.env.GENERATION_MODEL || 'gemini-2.5-flash-preview-09-2025'),
     prompt
   });
 

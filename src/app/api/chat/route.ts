@@ -1,5 +1,5 @@
 import { streamText, convertToModelMessages, type UIMessage } from 'ai';
-import { openai } from '@ai-sdk/openai';
+import { google } from '@ai-sdk/google';
 import { buildContext, searchSimilar } from '@/lib/rag';
 
 export const maxDuration = 30;
@@ -30,7 +30,7 @@ When relevant, reference specific page numbers. If you are unsure, say so.
   `.trim();
 
   const result = streamText({
-    model: openai(process.env.GENERATION_MODEL || 'gpt-5-mini'),
+    model: google(process.env.GENERATION_MODEL || 'gemini-2.5-flash-preview-09-2025'),
     system,
     // we keep the full chat so the assistant maintains continuity
     messages: convertToModelMessages(messages)
