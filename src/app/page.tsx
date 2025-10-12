@@ -3,11 +3,26 @@
 import { Tabs } from '@/components/ui/tabs';
 import RagChat from '@/components/RagChat';
 import PdfPane from '@/components/PdfPane';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
+interface SearchResult {
+  id: string;
+  page: number;
+  score: number;
+  snippet: string;
+  href?: string;
+}
+
+interface Flashcard {
+  q: string;
+  a: string;
+  page: number;
+  source: string;
+}
 
 function ExploreTab() {
   const [q, setQ] = useState('');
-  const [results, setResults] = useState<any[]>([]);
+  const [results, setResults] = useState<SearchResult[]>([]);
   const search = async () => {
     if (!q.trim()) return;
     const res = await fetch('/api/rag/search', {
@@ -99,7 +114,7 @@ function SummarizeTab() {
 
 function FlashcardsTab() {
   const [topic, setTopic] = useState('');
-  const [cards, setCards] = useState<any[]>([]);
+  const [cards, setCards] = useState<Flashcard[]>([]);
   const [loading, setLoading] = useState(false);
 
   const run = async () => {
@@ -154,12 +169,8 @@ function FlashcardsTab() {
 }
 
 export default function Page() {
-  const [pdfPage, setPdfPage] = useState<number | undefined>(undefined);
-
-  useEffect(() => {
-    // default the PDF pane to first page
-    setPdfPage(1);
-  }, []);
+  // Default the PDF pane to first page
+  const [pdfPage, setPdfPage] = useState<number | undefined>(1);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-[1fr_420px] gap-4 p-4">

@@ -14,7 +14,7 @@ import { MessageSquare } from 'lucide-react';
 
 import { useChat } from '@ai-sdk/react';
 import { DefaultChatTransport } from 'ai';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import SourcesPanel from './SourcesPanel';
 
 type RagSourceHeader = {
@@ -31,7 +31,7 @@ export default function RagChat({
   onJumpToPage?: (p: number) => void;
 }) {
   const [input, setInput] = useState('');
-  const [pendingSources, setPendingSources] = useState<RagSourceHeader[] | null>(null);
+  const [sources, setSources] = useState<RagSourceHeader[]>([]);
 
   const { messages, sendMessage, status } = useChat({
     transport: new DefaultChatTransport({
@@ -43,8 +43,11 @@ export default function RagChat({
         if (h) {
           try {
             const parsed = JSON.parse(decodeURIComponent(h)) as RagSourceHeader[];
-            setPendingSources(parsed);
-          } catch {}
+            // Directly update sources here instead of using an effect
+            setSources(parsed);
+          } catch {
+            // Ignore parse errors
+          }
         }
         return res;
       }
@@ -55,22 +58,9 @@ export default function RagChat({
     e.preventDefault();
     const text = message.text || input;
     if (!text.trim()) return;
-    setPendingSources(null);
     await sendMessage({ text });
     setInput('');
   };
-
-  const lastSources = useRef<RagSourceHeader[] | null>(null);
-  useEffect(() => {
-    if (pendingSources && pendingSources.length) {
-      lastSources.current = pendingSources;
-    }
-  }, [pendingSources]);
-
-  const sources = useMemo(
-    () => pendingSources ?? lastSources.current ?? [],
-    [pendingSources]
-  );
 
   return (
     <div className="flex flex-col h-full">

@@ -22,10 +22,19 @@ ${sources
   });
 
   // attempt to parse JSON; fallback to empty
-  let cards: any[] = [];
+  interface Flashcard {
+    q: string;
+    a: string;
+    page: number;
+    source: string;
+  }
+
+  let cards: Flashcard[] = [];
   try {
     const arr = JSON.parse(text);
     if (Array.isArray(arr)) cards = arr.slice(0, n);
-  } catch {}
+  } catch {
+    // Ignore parse errors
+  }
   return Response.json({ cards, used: sources.map((s, i) => ({ n: i + 1, id: s.id, page: s.page })) });
 }

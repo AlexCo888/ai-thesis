@@ -1,8 +1,6 @@
-/* eslint-disable no-console */
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
-import * as pdfjs from 'pdfjs-dist';
 import { embedTexts } from '../lib/embeddings';
 import { chunkPageText } from '../lib/chunk';
 import { sql } from '@vercel/postgres';
@@ -24,7 +22,7 @@ async function extractPages(filePath: string): Promise<string[]> {
     const page = await pdf.getPage(i);
     const content = await page.getTextContent();
     const text = content.items
-      .map((it: any) => ('str' in it ? it.str : ''))
+      .map((it) => ('str' in it ? (it.str as string) : ''))
       .join(' ')
       .replace(/\s+/g, ' ')
       .trim();
