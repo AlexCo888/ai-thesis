@@ -1,38 +1,31 @@
-import { sql } from './db';
+import { getPineconeIndex } from './pinecone';
 import { embedOne } from './embeddings';
 
 export type RagSource = {
   id: string;
   page: number;
   content: string;
-  score: number; // similarity converted from distance
+  score: number;
 };
-
-function toVectorLiteral(vec: number[]) {
-  // pgvector expects '[v1,v2,...]'
-  return `[${vec.join(',')}]`;
-}
 
 export async function searchSimilar(
   query: string,
   k = 6
 ): Promise<RagSource[]> {
-  const q = await embedOne(query);
-  const vec = toVectorLiteral(q);
+  const queryEmbedding = await embedOne(query);
+  const pineconeIndex = getPineconeIndex();
 
-  // cosine distance (<=>) lower is better; convert to similarity 1 - distance
-  const { rows } = await sql<RagSource>`
-    SELECT id, page, content,
-           1 - (embedding <=> ${vec}::vector) AS score
-    FROM rag_chunks
-    ORDER BY embedding <=> ${vec}::vector
-    LIMIT ${k};
-  `;
+  const results = await pineconeIndex.query({
+    vector: queryEmbedding,
+    topK: k,
+    includeMetadata: true
+  });
 
-  // Normalize score into [0,1] clamp
-  return rows.map((r) => ({
-    ...r,
-    score: Math.max(0, Math.min(1, Number(r.score)))
+  return results.matches.map((match) => ({
+    id: match.id,
+    page: (match.metadata?.page as number) || 0,
+    content: (match.metadata?.content as string) || '',
+    score: match.score || 0
   }));
 }
 
