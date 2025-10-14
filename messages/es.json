@@ -1,0 +1,44 @@
+{
+  "page": {
+    "thesisViewer": "Visor de Tesis",
+    "page": "Página"
+  },
+  "tabs": {
+    "ask": "Preguntar",
+    "explore": "Explorar",
+    "summarize": "Resumir",
+    "flashcards": "Tarjetas"
+  },
+  "chat": {
+    "emptyStateTitle": "Pregunta a la Tesis",
+    "emptyStateDescription": "Prueba: \"Resume el método de investigación\", \"¿Cuáles son los resultados principales?\", o \"Define términos clave.\"",
+    "analyzing": "La IA está analizando la tesis...",
+    "inputPlaceholder": "Pregunta sobre la tesis…",
+    "inputPlaceholderWaiting": "Esperando respuesta de la IA...",
+    "jumpToPage": "Ir a la página {page}"
+  },
+  "explore": {
+    "searchPlaceholder": "Búsqueda semántica…",
+    "searchButton": "Buscar",
+    "relevance": "relevancia",
+    "page": "Página"
+  },
+  "summarize": {
+    "from": "a",
+    "summarizeButton": "Resumir",
+    "summarizing": "Resumiendo…"
+  },
+  "flashcards": {
+    "topicPlaceholder": "Tema, ej. \"Metodología\"",
+    "generateButton": "Generar",
+    "generating": "Generando…",
+    "emptyState": "Ingresa un tema y haz clic en Generar para crear tarjetas"
+  },
+  "localeSwitcher": {
+    "label": "Idioma",
+    "locale": {
+      "en": "English",
+      "es": "Español"
+    }
+  }
+}

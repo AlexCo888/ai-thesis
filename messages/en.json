@@ -1,0 +1,44 @@
+{
+  "page": {
+    "thesisViewer": "Thesis Viewer",
+    "page": "Page"
+  },
+  "tabs": {
+    "ask": "Ask",
+    "explore": "Explore",
+    "summarize": "Summarize",
+    "flashcards": "Flashcards"
+  },
+  "chat": {
+    "emptyStateTitle": "Ask the Thesis",
+    "emptyStateDescription": "Try: \"Summarize the research method\", \"What are the main results?\", or \"Define key terms.\"",
+    "analyzing": "AI is analyzing the thesis...",
+    "inputPlaceholder": "Ask about the thesis…",
+    "inputPlaceholderWaiting": "Waiting for AI response...",
+    "jumpToPage": "Jump to page {page}"
+  },
+  "explore": {
+    "searchPlaceholder": "Semantic search…",
+    "searchButton": "Search",
+    "relevance": "relevance",
+    "page": "Page"
+  },
+  "summarize": {
+    "from": "to",
+    "summarizeButton": "Summarize",
+    "summarizing": "Summarizing…"
+  },
+  "flashcards": {
+    "topicPlaceholder": "Topic, e.g. \"Methodology\"",
+    "generateButton": "Generate",
+    "generating": "Generating…",
+    "emptyState": "Enter a topic and click Generate to create flashcards"
+  },
+  "localeSwitcher": {
+    "label": "Language",
+    "locale": {
+      "en": "English",
+      "es": "Español"
+    }
+  }
+}

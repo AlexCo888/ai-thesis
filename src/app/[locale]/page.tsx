@@ -5,6 +5,7 @@ import RagChat from '@/components/RagChat';
 import PdfPane from '@/components/PdfPane';
 import FlashcardWithChat from '@/components/FlashcardWithChat';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 interface SearchResult {
   id: string;
@@ -22,6 +23,7 @@ interface Flashcard {
 }
 
 function ExploreTab() {
+  const t = useTranslations('explore');
   const [q, setQ] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const search = async () => {
@@ -40,17 +42,17 @@ function ExploreTab() {
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="Semantic search…"
+          placeholder={t('searchPlaceholder')}
           className="flex-1 border rounded px-3 py-2"
         />
-        <button onClick={search} className="px-3 py-2 rounded bg-black text-white">Search</button>
+        <button onClick={search} className="px-3 py-2 rounded bg-black text-white">{t('searchButton')}</button>
       </div>
       <ul className="space-y-3">
         {results.map((r) => (
           <li key={r.id} className="border rounded p-3">
             <div className="text-sm">
-              <a className="underline" href={r.href} target="_blank">Page {r.page}</a>
-              <span className="ml-2 text-xs opacity-70">relevance {(r.score * 100).toFixed(0)}%</span>
+              <a className="underline" href={r.href} target="_blank">{t('page')} {r.page}</a>
+              <span className="ml-2 text-xs opacity-70">{t('relevance')} {(r.score * 100).toFixed(0)}%</span>
             </div>
             <div className="text-sm mt-1">{r.snippet}</div>
             <div className="text-xs text-muted-foreground break-all mt-1">id={r.id}</div>
@@ -62,6 +64,7 @@ function ExploreTab() {
 }
 
 function SummarizeTab() {
+  const t = useTranslations('summarize');
   const [fromPage, setFromPage] = useState<number>(1);
   const [toPage, setToPage] = useState<number>(1);
   const [text, setText] = useState<string>('');
@@ -96,7 +99,7 @@ function SummarizeTab() {
           onChange={(e) => setFromPage(parseInt(e.target.value || '1', 10))}
           className="w-24 border rounded px-2 py-2"
         />
-        <span>to</span>
+        <span>{t('from')}</span>
         <input
           type="number"
           min={fromPage}
@@ -105,7 +108,7 @@ function SummarizeTab() {
           className="w-24 border rounded px-2 py-2"
         />
         <button onClick={run} className="px-3 py-2 rounded bg-black text-white" disabled={loading}>
-          {loading ? 'Summarizing…' : 'Summarize'}
+          {loading ? t('summarizing') : t('summarizeButton')}
         </button>
       </div>
       <pre className="whitespace-pre-wrap text-sm">{text}</pre>
@@ -114,6 +117,7 @@ function SummarizeTab() {
 }
 
 function FlashcardsTab({ onPageJump }: { onPageJump?: (page: number) => void }) {
+  const t = useTranslations('flashcards');
   const [topic, setTopic] = useState('');
   const [cards, setCards] = useState<Flashcard[]>([]);
   const [loading, setLoading] = useState(false);
@@ -142,11 +146,11 @@ function FlashcardsTab({ onPageJump }: { onPageJump?: (page: number) => void }) 
         <input
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
-          placeholder="Topic, e.g. “Methodology”"
+          placeholder={t('topicPlaceholder')}
           className="flex-1 border rounded px-3 py-2"
         />
         <button onClick={run} className="px-3 py-2 rounded bg-black text-white" disabled={loading}>
-          {loading ? 'Generating…' : 'Generate'}
+          {loading ? t('generating') : t('generateButton')}
         </button>
       </div>
       {error && (
@@ -156,7 +160,7 @@ function FlashcardsTab({ onPageJump }: { onPageJump?: (page: number) => void }) 
       )}
       {!loading && cards.length === 0 && !error && (
         <div className="text-sm text-muted-foreground text-center py-8">
-          Enter a topic and click Generate to create flashcards
+          {t('emptyState')}
         </div>
       )}
       <div className="space-y-3">
@@ -174,6 +178,9 @@ function FlashcardsTab({ onPageJump }: { onPageJump?: (page: number) => void }) 
 }
 
 export default function Page() {
+  const t = useTranslations('tabs');
+  const tPage = useTranslations('page');
+  
   // Default the PDF pane to first page
   const [pdfPage, setPdfPage] = useState<number | undefined>(1);
 
@@ -185,10 +192,10 @@ export default function Page() {
           <div className="flex flex-col border rounded-lg shadow-sm p-2 lg:p-4 bg-white dark:bg-gray-950 overflow-hidden min-h-0 h-[75vh] lg:h-auto">
             <Tabs
               tabs={[
-                { label: 'Ask', content: <RagChat onJumpToPage={(p) => setPdfPage(p)} /> },
-                { label: 'Explore', content: <ExploreTab /> },
-                { label: 'Summarize', content: <SummarizeTab /> },
-                { label: 'Flashcards', content: <FlashcardsTab onPageJump={(p) => setPdfPage(p)} /> }
+                { label: t('ask'), content: <RagChat onJumpToPage={(p) => setPdfPage(p)} /> },
+                { label: t('explore'), content: <ExploreTab /> },
+                { label: t('summarize'), content: <SummarizeTab /> },
+                { label: t('flashcards'), content: <FlashcardsTab onPageJump={(p) => setPdfPage(p)} /> }
               ]}
             />
           </div>
@@ -196,10 +203,10 @@ export default function Page() {
           {/* Right: PDF pane - Secondary on mobile (remaining space) */}
           <div className="flex flex-col border rounded-lg shadow-sm bg-white dark:bg-gray-950 overflow-hidden min-h-0 flex-1 lg:flex-none lg:h-auto">
             <div className="flex-shrink-0 px-4 pt-4 pb-3 border-b flex items-center justify-between">
-              <span className="text-sm font-semibold">Thesis Viewer</span>
+              <span className="text-sm font-semibold">{tPage('thesisViewer')}</span>
               {pdfPage && (
                 <span className="text-xs text-muted-foreground bg-gray-100 dark:bg-gray-800 px-2.5 py-1 rounded-full">
-                  Page {pdfPage}
+                  {tPage('page')} {pdfPage}
                 </span>
               )}
             </div>

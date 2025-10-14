@@ -17,6 +17,7 @@ import { useChat } from '@ai-sdk/react';
 import { DefaultChatTransport } from 'ai';
 import { useState } from 'react';
 import SourcesPanel from './SourcesPanel';
+import { useTranslations } from 'next-intl';
 
 type RagSourceHeader = {
   n: number;
@@ -31,6 +32,7 @@ export default function RagChat({
 }: {
   onJumpToPage?: (p: number) => void;
 }) {
+  const t = useTranslations('chat');
   const [input, setInput] = useState('');
   const [sources, setSources] = useState<RagSourceHeader[]>([]);
 
@@ -74,15 +76,15 @@ export default function RagChat({
             <div className="flex items-center justify-center h-full">
               <div className="flex flex-col items-center gap-3 text-muted-foreground">
                 <Loader size={32} />
-                <p className="text-sm">AI is analyzing the thesis...</p>
+                <p className="text-sm">{t('analyzing')}</p>
               </div>
             </div>
           )}
           {messages.length === 0 ? (
             <ConversationEmptyState
               icon={<MessageSquare className="size-12" />}
-              title="Ask the Thesis"
-              description="Try: “Summarize the research method”, “What are the main results?”, or “Define key terms.”"
+              title={t('emptyStateTitle')}
+              description={t('emptyStateDescription')}
             />
           ) : (
             messages.map((message) => (
@@ -115,7 +117,7 @@ export default function RagChat({
       <PromptInput onSubmit={handleSubmit} className="mt-2 lg:mt-3 w-full relative flex-shrink-0">
         <PromptInputTextarea
           value={input}
-          placeholder={isLoading ? 'Waiting for AI response...' : 'Ask about the thesis…'}
+          placeholder={isLoading ? t('inputPlaceholderWaiting') : t('inputPlaceholder')}
           onChange={(e) => setInput(e.currentTarget.value)}
           className="pr-12 text-base"
           disabled={isLoading}
@@ -140,7 +142,7 @@ export default function RagChat({
                 key={s.id}
                 className="text-[11px] underline hover:text-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap flex-shrink-0 py-0.5"
                 onClick={() => onJumpToPage?.(s.page)}
-                title={`Jump to page ${s.page}`}
+                title={t('jumpToPage', { page: s.page })}
                 disabled={isLoading}
               >
                 [#{s.n}] pg.{s.page}
