@@ -203,7 +203,7 @@ export default function Page() {
                 </span>
               )}
             </div>
-            <div className="flex-1 p-4 overflow-hidden min-h-0">
+            <div className="flex-1 p-2 lg:p-4 overflow-hidden min-h-0">
               <PdfPane page={pdfPage} />
             </div>
           </div>

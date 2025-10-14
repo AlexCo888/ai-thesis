@@ -29,9 +29,11 @@ export default function PdfPane({ page }: PdfPaneProps) {
     if (iframeRef.current && page) {
       const base = '/thesis.pdf';
       const timestamp = retryCount > 0 ? `?v=${retryCount}` : '';
-      // Use Fit view for mobile to prevent scrollbars, FitH for desktop
-      const view = isMobile ? 'Fit' : 'FitH';
-      const newUrl = `${base}${timestamp}#page=${page}&view=${view}`;
+      // Use FitV with zoom for mobile, FitH for desktop
+      const params = isMobile 
+        ? `toolbar=0&navpanes=0&scrollbar=0&page=${page}&view=FitV&zoom=page-fit` 
+        : `page=${page}&view=FitH`;
+      const newUrl = `${base}${timestamp}#${params}`;
       iframeRef.current.src = newUrl;
     }
   }, [page, retryCount, isMobile]);
@@ -60,14 +62,16 @@ export default function PdfPane({ page }: PdfPaneProps) {
   // Build the PDF URL with cache busting
   const pdfUrl = (() => {
     const timestamp = retryCount > 0 ? `?v=${retryCount}` : '';
-    // Use Fit view for mobile to prevent scrollbars, FitH for desktop
-    const view = isMobile ? 'Fit' : 'FitH';
-    const pageParam = page ? `#page=${page}&view=${view}` : `#view=${view}`;
-    return `/thesis.pdf${timestamp}${pageParam}`;
+    // Use FitV with zoom for mobile to prevent scrollbars, FitH for desktop
+    // Also add toolbar=0 to hide PDF toolbar on mobile
+    const params = isMobile 
+      ? (page ? `toolbar=0&navpanes=0&scrollbar=0&page=${page}&view=FitV&zoom=page-fit` : `toolbar=0&navpanes=0&scrollbar=0&view=FitV&zoom=page-fit`)
+      : (page ? `page=${page}&view=FitH` : `view=FitH`);
+    return `/thesis.pdf${timestamp}#${params}`;
   })();
 
   return (
-    <div className="relative w-full h-full bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800 touch-pan-y touch-pan-x">
+    <div className="relative w-full h-full bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 touch-pan-y touch-pan-x" style={{ overflow: 'hidden' }}>
       {/* Fallback Options - Show on demand */}
       {showOptions && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/95 dark:bg-gray-950/95 backdrop-blur-sm z-20 p-6">
@@ -137,20 +141,34 @@ export default function PdfPane({ page }: PdfPaneProps) {
       </button>
 
       {/* PDF Iframe - Always visible */}
-      <iframe
-        ref={iframeRef}
-        key={`pdf-viewer-${retryCount}`}
-        title="Thesis PDF Viewer"
-        src={pdfUrl}
-        className="w-full h-full border-0 bg-white dark:bg-gray-950"
-        style={{
-          minHeight: '100%',
-          maxWidth: '100%',
-          overflow: isMobile ? 'hidden' : 'auto'
+      <div 
+        className="w-full h-full" 
+        style={{ 
+          overflow: isMobile ? 'hidden' : 'auto',
+          position: 'relative'
         }}
-        allow="fullscreen"
-        loading="lazy"
-      />
+      >
+        <iframe
+          ref={iframeRef}
+          key={`pdf-viewer-${retryCount}`}
+          title="Thesis PDF Viewer"
+          src={pdfUrl}
+          className="w-full h-full border-0 bg-white dark:bg-gray-950"
+          style={{
+            minHeight: '100%',
+            height: '100%',
+            width: '100%',
+            maxWidth: '100%',
+            display: 'block',
+            border: 'none',
+            margin: 0,
+            padding: 0,
+            objectFit: isMobile ? 'contain' : 'initial'
+          }}
+          allow="fullscreen"
+          loading="lazy"
+        />
+      </div>
     </div>
   );
 }
