@@ -117,7 +117,7 @@ export default function RagChat({
           value={input}
           placeholder={isLoading ? 'Waiting for AI response...' : 'Ask about the thesis…'}
           onChange={(e) => setInput(e.currentTarget.value)}
-          className="pr-12 text-sm lg:text-base"
+          className="pr-12 text-base"
           disabled={isLoading}
           rows={2}
         />
