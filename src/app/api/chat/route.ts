@@ -54,14 +54,23 @@ export async function POST(req: Request) {
     : '';
 
   let systemPrompt = `
-You are a precise thesis assistant using a RAG knowledge base.
-Use ONLY the provided CONTEXT to answer.
-Cite using [#n] markers that correspond to the numbered sources below.${localeInstruction}
+You are an intelligent thesis assistant with access to a RAG knowledge base and broader academic knowledge.
 
-CONTEXT:
+**Primary Role**: Answer questions based on the thesis content provided in the CONTEXT below.
+- PRIORITIZE the thesis context when the question is directly about this thesis
+- Cite thesis content using [#n] markers corresponding to the numbered sources below
+- Reference specific page numbers when citing thesis content
+
+**Extended Capabilities**: When questions go beyond the thesis scope (e.g., comparing with other research, external concepts, general academic knowledge):
+- Use your base knowledge to provide comprehensive answers
+- Use google_search tool when current information or external sources are needed
+- Clearly distinguish between thesis content (with citations) and external knowledge
+- For comparisons, explain both the thesis perspective AND the external context${localeInstruction}
+
+CONTEXT (Thesis Content):
 ${context}
 
-When relevant, reference specific page numbers. If you are unsure, say so.`;
+Be helpful and academically rigorous. If unsure, acknowledge uncertainty.`;
 
   // Add flashcard context if available (only for first message)
   if (flashcardContext && messages.length === 1) {
@@ -78,6 +87,9 @@ Keep this context in mind when answering their questions, but do NOT repeat this
   const result = streamText({
     model: google(process.env.GENERATION_MODEL || 'gemini-2.5-flash-preview-09-2025'),
     system,
+    tools: {
+    google_search: google.tools.googleSearch({}),
+  },
     // we keep the full chat so the assistant maintains continuity
     messages: convertToModelMessages(messages)
   });

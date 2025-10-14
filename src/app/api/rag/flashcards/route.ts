@@ -30,13 +30,21 @@ export async function POST(req: Request) {
     : '';
 
   const prompt = `
-Build ${n} concise flashcards (JSON array) from the provided RAG sources.${localeInstruction}
-Each item: { "q": string, "a": string, "page": number, "source": "id" }.
-Focus on definitions, formulas, key results, limitations. Pages MUST be correct.
+Generate ${n} educational flashcards (JSON array) about: "${topic}"${localeInstruction}
 
+**Primary Source**: Use the thesis content from SOURCES below.
+- Each item: { "q": string, "a": string, "page": number, "source": "id" }
+- For thesis-based cards: include accurate page numbers and source IDs
+
+**Extended Capability**: If the topic requests comparisons, external concepts, or broader context:
+- You may supplement with general academic knowledge
+- For non-thesis content: use page: 0 and source: "external"
+- Use google_search tool when current external information is needed
+
+Focus on: definitions, formulas, key results, limitations, comparisons.
 IMPORTANT: Use plain text or Unicode characters instead of LaTeX notation. For Greek letters, use Unicode (e.g., γ instead of $\\gamma$). Avoid backslashes in strings.
 
-SOURCES:
+SOURCES (Thesis Content):
 ${sources
   .map((s, i) => `[#${i + 1}] page ${s.page}, id=${s.id}\n${s.content}`)
   .join('\n\n---\n\n')}
@@ -44,6 +52,9 @@ ${sources
 
   const { text } = await generateText({
     model: google(process.env.GENERATION_MODEL || 'gemini-2.5-flash-preview-09-2025'),
+    tools: {
+    google_search: google.tools.googleSearch({}),
+  },
     prompt,
     temperature: 0.3
   });
