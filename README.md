@@ -128,8 +128,8 @@ The app includes a **LocaleSwitcher** in the top-right corner with a scrollable 
 ### AI Model Configuration
 - Change `GENERATION_MODEL` in `.env.local` to use different Gemini models:
   - `gemini-2.5-flash-preview-09-2025` (fast, recommended)
-  - `gemini-2.0-flash-exp` (balanced)
-  - `gemini-1.5-pro` (more capable)
+  - `gemini-2.0-flash` (quicker)
+  - `gemini-2.5-pro` (more capable)
 - Adjust temperature and other parameters in `/api/chat/route.ts`
 
 ### Retrieval Optimization
@@ -184,13 +184,12 @@ pnpm migrate      # (Legacy) Pinecone migration if needed
 
 ## 📚 Documentation
 
-- **[INTERNATIONALIZATION.md](./INTERNATIONALIZATION.md)** - Complete i18n setup and usage guide
 - **[Vercel AI SDK Docs](https://sdk.vercel.ai/docs)** - AI SDK documentation
 - **[next-intl Docs](https://next-intl-docs.vercel.app/)** - Internationalization guide
 - **[Pinecone Docs](https://docs.pinecone.io/)** - Vector database documentation
 
 ---
 
-**Author:** Alejandro Comi  
+**Author:** Alejandro Comi | Koffe AI | El Café de los Sentidos
 **Tech stack:** Next.js 15 • TypeScript • React 19 • Vercel AI SDK 5 • Google Gemini • AI Elements • Pinecone • next-intl v4 • Shadcn UI • Tailwind CSS  
 **License:** MIT
