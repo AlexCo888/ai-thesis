@@ -112,13 +112,14 @@ export default function RagChat({
         <ConversationScrollButton />
       </Conversation>
 
-      <PromptInput onSubmit={handleSubmit} className="mt-3 w-full relative">
+      <PromptInput onSubmit={handleSubmit} className="mt-2 lg:mt-3 w-full relative flex-shrink-0">
         <PromptInputTextarea
           value={input}
           placeholder={isLoading ? 'Waiting for AI response...' : 'Ask about the thesis…'}
           onChange={(e) => setInput(e.currentTarget.value)}
-          className="pr-12"
+          className="pr-12 text-sm lg:text-base"
           disabled={isLoading}
+          rows={2}
         />
         <PromptInputSubmit
           status={status === 'streaming' ? 'streaming' : status === 'submitted' ? 'submitted' : 'ready'}
