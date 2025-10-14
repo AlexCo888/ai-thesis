@@ -71,7 +71,7 @@ export default function PdfPane({ page }: PdfPaneProps) {
   })();
 
   return (
-    <div className="relative w-full h-full bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 touch-pan-y touch-pan-x" style={{ overflow: 'hidden' }}>
+    <div className="relative w-full h-full bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 touch-pan-y touch-pan-x min-h-[500px]" style={{ overflow: 'hidden' }}>
       {/* Fallback Options - Show on demand */}
       {showOptions && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/95 dark:bg-gray-950/95 backdrop-blur-sm z-20 p-6">
@@ -140,12 +140,12 @@ export default function PdfPane({ page }: PdfPaneProps) {
         <AlertCircle className="h-4 w-4 text-gray-600 dark:text-gray-400" />
       </button>
 
-      {/* PDF Iframe - Always visible */}
+      {/* PDF Iframe - Always visible with guaranteed height */}
       <div 
-        className="w-full h-full" 
+        className="w-full h-full absolute inset-0" 
         style={{ 
-          overflow: isMobile ? 'hidden' : 'auto',
-          position: 'relative'
+          overflow: 'hidden',
+          minHeight: '500px'
         }}
       >
         <iframe
@@ -153,17 +153,15 @@ export default function PdfPane({ page }: PdfPaneProps) {
           key={`pdf-viewer-${retryCount}`}
           title="Thesis PDF Viewer"
           src={pdfUrl}
-          className="w-full h-full border-0 bg-white dark:bg-gray-950"
+          className="w-full h-full border-0 bg-white dark:bg-gray-950 absolute inset-0"
           style={{
-            minHeight: '100%',
+            minHeight: '500px',
             height: '100%',
             width: '100%',
-            maxWidth: '100%',
             display: 'block',
             border: 'none',
             margin: 0,
-            padding: 0,
-            objectFit: isMobile ? 'contain' : 'initial'
+            padding: 0
           }}
           allow="fullscreen"
           loading="lazy"

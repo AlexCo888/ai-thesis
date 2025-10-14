@@ -188,8 +188,8 @@ export default function Page() {
     <div className="h-screen flex flex-col overflow-hidden">
       <div className="flex-1 container mx-auto max-w-[1800px] px-2 lg:px-4 py-2 lg:py-4 overflow-y-auto lg:overflow-hidden">
         <div className="flex flex-col lg:grid lg:grid-cols-[1fr_500px] xl:grid-cols-[1fr_600px] 2xl:grid-cols-[1fr_700px] gap-2 lg:gap-4 min-h-full lg:h-full">
-          {/* Left: App - Takes priority on mobile (~73% of initial viewport) */}
-          <div className="flex flex-col border rounded-lg shadow-sm p-2 lg:p-4 bg-white dark:bg-gray-950 overflow-hidden min-h-0 h-[73vh] lg:h-auto shrink-0">
+          {/* Left: App - Takes priority on mobile (~70% of initial viewport) */}
+          <div className="flex flex-col border rounded-lg shadow-sm p-2 lg:p-4 bg-white dark:bg-gray-950 overflow-hidden min-h-0 h-[70vh] lg:h-auto shrink-0">
             <Tabs
               tabs={[
                 { label: t('ask'), content: <RagChat onJumpToPage={(p) => setPdfPage(p)} /> },
@@ -200,8 +200,8 @@ export default function Page() {
             />
           </div>
 
-          {/* Right: PDF pane - Scrollable on mobile with proper minimum height */}
-          <div className="flex flex-col border rounded-lg shadow-sm bg-white dark:bg-gray-950 overflow-hidden min-h-[60vh] lg:min-h-0 lg:flex-1 lg:flex-none lg:h-auto mb-2 lg:mb-0 shrink-0">
+          {/* Right: PDF pane - Full height and properly sized on mobile */}
+          <div className="flex flex-col border rounded-lg shadow-sm bg-white dark:bg-gray-950 overflow-hidden h-[80vh] lg:min-h-0 lg:flex-1 lg:flex-none lg:h-auto mb-4 lg:mb-0 shrink-0">
             <div className="flex-shrink-0 px-4 pt-4 pb-3 border-b flex items-center justify-between">
               <span className="text-sm font-semibold">{tPage('thesisViewer')}</span>
               {pdfPage && (
@@ -210,7 +210,7 @@ export default function Page() {
                 </span>
               )}
             </div>
-            <div className="flex-1 p-2 lg:p-4 overflow-hidden min-h-0">
+            <div className="flex-1 overflow-hidden min-h-0 p-0">
               <PdfPane page={pdfPage} />
             </div>
           </div>
