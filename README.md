@@ -2,7 +2,7 @@
 **Next.js 15 + Vercel AI SDK 5 + AI Elements + Pinecone**
 
 A polished RAG (Retrieval-Augmented Generation) app with streaming chat, citations, explore, summarize-range, and flashcards.  
-Optimized for performance, clarity, and modern Vercel AI workflows. Powered by **Google Gemini** with **multilingual support** (EN/ES).
+Optimized for performance, clarity, and modern Vercel AI workflows. Powered by **Google Gemini** with **12 languages supported**: English, Spanish, Portuguese, French, German, Italian, Chinese, Japanese, Korean, Arabic, Russian, and Hindi.
 
 ---
 
@@ -64,11 +64,24 @@ pnpm dev
 ```
 
 Then open:
-👉 [http://localhost:3000](http://localhost:3000) (English - default)  
-👉 [http://localhost:3000/es](http://localhost:3000/es) (Spanish)
+👉 [http://localhost:3000](http://localhost:3000) (English - default)
 
-### 🌍 Language Switching
-The app includes a **LocaleSwitcher** in the top-right corner for seamless language switching between English and Spanish.
+### 🌍 Language Support (12 Languages)
+Access the app in any of these languages by changing the URL prefix:
+- 🇺🇸 **English**: `/` or `/en`
+- 🇪🇸 **Spanish**: `/es`
+- 🇵🇹 **Portuguese**: `/pt`
+- 🇫🇷 **French**: `/fr`
+- 🇩🇪 **German**: `/de`
+- 🇮🇹 **Italian**: `/it`
+- 🇨🇳 **Chinese**: `/zh`
+- 🇯🇵 **Japanese**: `/ja`
+- 🇰🇷 **Korean**: `/ko`
+- 🇸🇦 **Arabic**: `/ar`
+- 🇷🇺 **Russian**: `/ru`
+- 🇮🇳 **Hindi**: `/hi`
+
+The app includes a **LocaleSwitcher** in the top-right corner with a scrollable dropdown for seamless language switching.
 
 ---
 
@@ -87,7 +100,7 @@ The app includes a **LocaleSwitcher** in the top-right corner for seamless langu
 ## 🧩 Key Features
 
 - 🤖 **Google Gemini AI** - Uses `gemini-2.5-flash-preview` for fast, high-quality responses
-- 🌍 **Internationalization** - Built-in support for English and Spanish via **next-intl v4**
+- 🌍 **12 Languages** - Full i18n support via **next-intl v4** (EN, ES, PT, FR, DE, IT, ZH, JA, KO, AR, RU, HI)
 - 🎯 **Pinecone Vector Search** - Fast, scalable semantic search
 - 🎨 **AI Elements** - Beautiful UI components: `Conversation`, `Message`, `PromptInput`, `InlineCitation`
 - 📚 **Multiple Modes** - Chat, Explore, Summarize, and Flashcards
@@ -124,13 +137,20 @@ The app includes a **LocaleSwitcher** in the top-right corner for seamless langu
 - Adjust the number of retrieved chunks in `searchSimilar()` (default: 6)
 - Pinecone automatically handles index optimization
 
-### Internationalization
-- Add new languages by:
-  1. Adding locale to `src/i18n/routing.ts`
-  2. Creating `messages/{locale}.json`
-  3. Adding locale to `generateStaticParams()` in layouts
-- All translations are in `messages/` directory
-- See `INTERNATIONALIZATION.md` for detailed guide
+### Internationalization (12 Languages)
+The app supports **12 languages** out of the box:
+- **European**: English, Spanish, Portuguese, French, German, Italian
+- **Asian**: Chinese (Simplified), Japanese, Korean, Hindi
+- **Middle Eastern**: Arabic
+- **Eastern European**: Russian
+
+To add more languages:
+1. Add locale code to `src/i18n/routing.ts` locales array
+2. Create `messages/{locale}.json` with all translation keys
+3. Add locale to middleware matcher in `src/middleware.ts`
+4. Update LocaleSwitcher component with locale display code
+
+All translation files are in the `messages/` directory with consistent JSON structure.
 
 ### UI Customization
 - For **inline hover citations** (Perplexity-style), wire token-level data into `InlineCitation`
@@ -145,8 +165,9 @@ The app includes a **LocaleSwitcher** in the top-right corner for seamless langu
 ✅ **Summarize Tab** - Page-range summarization  
 ✅ **Flashcards Tab** - AI-generated study cards with contextual chat  
 ✅ **PDF Viewer** - Integrated thesis viewer with page jumping  
-✅ **Language Switcher** - English/Spanish support with next-intl  
+✅ **12 Language Support** - Full internationalization with next-intl v4  
 ✅ **Responsive Design** - Mobile-optimized layout  
+✅ **Type-Safe** - Complete TypeScript coverage  
 
 ## 🔧 Scripts
 

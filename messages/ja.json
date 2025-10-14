@@ -1,0 +1,54 @@
+{
+  "page": {
+    "thesisViewer": "論文ビューア",
+    "page": "ページ"
+  },
+  "tabs": {
+    "ask": "質問する",
+    "explore": "探索する",
+    "summarize": "要約する",
+    "flashcards": "フラッシュカード"
+  },
+  "chat": {
+    "emptyStateTitle": "論文に質問する",
+    "emptyStateDescription": "試してみてください：「研究方法を要約して」、「主な結果は何ですか？」、または「重要な用語を定義して」",
+    "analyzing": "AIが論文を分析中...",
+    "inputPlaceholder": "論文について質問する…",
+    "inputPlaceholderWaiting": "AI応答を待っています...",
+    "jumpToPage": "{page}ページにジャンプ"
+  },
+  "explore": {
+    "searchPlaceholder": "セマンティック検索…",
+    "searchButton": "検索",
+    "relevance": "関連性",
+    "page": "ページ"
+  },
+  "summarize": {
+    "from": "から",
+    "summarizeButton": "要約する",
+    "summarizing": "要約中…"
+  },
+  "flashcards": {
+    "topicPlaceholder": "トピック、例：「方法論」",
+    "generateButton": "生成",
+    "generating": "生成中…",
+    "emptyState": "トピックを入力して生成をクリックしてカードを作成"
+  },
+  "localeSwitcher": {
+    "label": "言語",
+    "locale": {
+      "en": "English",
+      "es": "Español",
+      "pt": "Português",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "zh": "中文",
+      "ja": "日本語",
+      "ko": "한국어",
+      "ar": "العربية",
+      "ru": "Русский",
+      "hi": "हिन्दी"
+    }
+  }
+}

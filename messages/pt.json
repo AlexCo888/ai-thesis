@@ -1,0 +1,54 @@
+{
+  "page": {
+    "thesisViewer": "Visualizador de Tese",
+    "page": "Página"
+  },
+  "tabs": {
+    "ask": "Perguntar",
+    "explore": "Explorar",
+    "summarize": "Resumir",
+    "flashcards": "Cartões"
+  },
+  "chat": {
+    "emptyStateTitle": "Pergunte à Tese",
+    "emptyStateDescription": "Tente: \"Resuma o método de pesquisa\", \"Quais são os principais resultados?\", ou \"Defina termos-chave.\"",
+    "analyzing": "A IA está analisando a tese...",
+    "inputPlaceholder": "Pergunte sobre a tese…",
+    "inputPlaceholderWaiting": "Aguardando resposta da IA...",
+    "jumpToPage": "Ir para a página {page}"
+  },
+  "explore": {
+    "searchPlaceholder": "Pesquisa semântica…",
+    "searchButton": "Pesquisar",
+    "relevance": "relevância",
+    "page": "Página"
+  },
+  "summarize": {
+    "from": "a",
+    "summarizeButton": "Resumir",
+    "summarizing": "Resumindo…"
+  },
+  "flashcards": {
+    "topicPlaceholder": "Tópico, ex. \"Metodologia\"",
+    "generateButton": "Gerar",
+    "generating": "Gerando…",
+    "emptyState": "Digite um tópico e clique em Gerar para criar cartões"
+  },
+  "localeSwitcher": {
+    "label": "Idioma",
+    "locale": {
+      "en": "English",
+      "es": "Español",
+      "pt": "Português",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "zh": "中文",
+      "ja": "日本語",
+      "ko": "한국어",
+      "ar": "العربية",
+      "ru": "Русский",
+      "hi": "हिन्दी"
+    }
+  }
+}

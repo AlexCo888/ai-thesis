@@ -11,14 +11,34 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
+type LocaleCode = 'en' | 'es' | 'pt' | 'fr' | 'de' | 'it' | 'zh' | 'ja' | 'ko' | 'ar' | 'ru' | 'hi';
+
+const locales: LocaleCode[] = ['en', 'es', 'pt', 'fr', 'de', 'it', 'zh', 'ja', 'ko', 'ar', 'ru', 'hi'];
+
+// Display codes for the dropdown trigger
+const localeDisplayCodes: Record<LocaleCode, string> = {
+  en: 'EN',
+  es: 'ES',
+  pt: 'PT',
+  fr: 'FR',
+  de: 'DE',
+  it: 'IT',
+  zh: '中文',
+  ja: '日本',
+  ko: '한국',
+  ar: 'AR',
+  ru: 'RU',
+  hi: 'हिन्दी'
+};
+
 export default function LocaleSwitcher() {
   const t = useTranslations('localeSwitcher');
-  const locale = useLocale();
+  const locale = useLocale() as LocaleCode;
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
 
-  const onSelectChange = (nextLocale: 'en' | 'es') => {
+  const onSelectChange = (nextLocale: LocaleCode) => {
     startTransition(() => {
       router.replace(pathname, { locale: nextLocale });
     });
@@ -32,28 +52,22 @@ export default function LocaleSwitcher() {
       >
         <Globe className="h-4 w-4" />
         <span className="text-sm font-medium">
-          {locale === 'en' ? 'EN' : 'ES'}
+          {localeDisplayCodes[locale]}
         </span>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem
-          onClick={() => onSelectChange('en')}
-          className={locale === 'en' ? 'bg-gray-100' : ''}
-        >
-          <span className="flex items-center gap-2">
-            {t('locale.en')}
-            {locale === 'en' && <span className="text-xs">✓</span>}
-          </span>
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => onSelectChange('es')}
-          className={locale === 'es' ? 'bg-gray-100' : ''}
-        >
-          <span className="flex items-center gap-2">
-            {t('locale.es')}
-            {locale === 'es' && <span className="text-xs">✓</span>}
-          </span>
-        </DropdownMenuItem>
+      <DropdownMenuContent align="end" className="max-h-[400px] overflow-y-auto">
+        {locales.map((loc) => (
+          <DropdownMenuItem
+            key={loc}
+            onClick={() => onSelectChange(loc)}
+            className={locale === loc ? 'bg-gray-100 font-semibold' : ''}
+          >
+            <span className="flex items-center gap-2 w-full">
+              <span className="flex-1">{t(`locale.${loc}`)}</span>
+              {locale === loc && <span className="text-xs">✓</span>}
+            </span>
+          </DropdownMenuItem>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );

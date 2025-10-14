@@ -1,0 +1,54 @@
+{
+  "page": {
+    "thesisViewer": "Visionneuse de Thèse",
+    "page": "Page"
+  },
+  "tabs": {
+    "ask": "Demander",
+    "explore": "Explorer",
+    "summarize": "Résumer",
+    "flashcards": "Cartes"
+  },
+  "chat": {
+    "emptyStateTitle": "Interrogez la Thèse",
+    "emptyStateDescription": "Essayez : \"Résumez la méthode de recherche\", \"Quels sont les principaux résultats ?\", ou \"Définissez les termes clés.\"",
+    "analyzing": "L'IA analyse la thèse...",
+    "inputPlaceholder": "Posez une question sur la thèse…",
+    "inputPlaceholderWaiting": "En attente de la réponse de l'IA...",
+    "jumpToPage": "Aller à la page {page}"
+  },
+  "explore": {
+    "searchPlaceholder": "Recherche sémantique…",
+    "searchButton": "Rechercher",
+    "relevance": "pertinence",
+    "page": "Page"
+  },
+  "summarize": {
+    "from": "à",
+    "summarizeButton": "Résumer",
+    "summarizing": "Résumé en cours…"
+  },
+  "flashcards": {
+    "topicPlaceholder": "Sujet, ex. \"Méthodologie\"",
+    "generateButton": "Générer",
+    "generating": "Génération en cours…",
+    "emptyState": "Entrez un sujet et cliquez sur Générer pour créer des cartes"
+  },
+  "localeSwitcher": {
+    "label": "Langue",
+    "locale": {
+      "en": "English",
+      "es": "Español",
+      "pt": "Português",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "zh": "中文",
+      "ja": "日本語",
+      "ko": "한국어",
+      "ar": "العربية",
+      "ru": "Русский",
+      "hi": "हिन्दी"
+    }
+  }
+}

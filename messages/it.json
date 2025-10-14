@@ -1,0 +1,54 @@
+{
+  "page": {
+    "thesisViewer": "Visualizzatore Tesi",
+    "page": "Pagina"
+  },
+  "tabs": {
+    "ask": "Chiedere",
+    "explore": "Esplorare",
+    "summarize": "Riassumere",
+    "flashcards": "Schede"
+  },
+  "chat": {
+    "emptyStateTitle": "Interroga la Tesi",
+    "emptyStateDescription": "Prova: \"Riassumi il metodo di ricerca\", \"Quali sono i risultati principali?\", o \"Definisci i termini chiave.\"",
+    "analyzing": "L'IA sta analizzando la tesi...",
+    "inputPlaceholder": "Fai una domanda sulla tesi…",
+    "inputPlaceholderWaiting": "In attesa della risposta dell'IA...",
+    "jumpToPage": "Vai alla pagina {page}"
+  },
+  "explore": {
+    "searchPlaceholder": "Ricerca semantica…",
+    "searchButton": "Cerca",
+    "relevance": "rilevanza",
+    "page": "Pagina"
+  },
+  "summarize": {
+    "from": "a",
+    "summarizeButton": "Riassumi",
+    "summarizing": "Riassumendo…"
+  },
+  "flashcards": {
+    "topicPlaceholder": "Argomento, es. \"Metodologia\"",
+    "generateButton": "Genera",
+    "generating": "Generazione in corso…",
+    "emptyState": "Inserisci un argomento e clicca su Genera per creare schede"
+  },
+  "localeSwitcher": {
+    "label": "Lingua",
+    "locale": {
+      "en": "English",
+      "es": "Español",
+      "pt": "Português",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "zh": "中文",
+      "ja": "日本語",
+      "ko": "한국어",
+      "ar": "العربية",
+      "ru": "Русский",
+      "hi": "हिन्दी"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "page": {
+    "thesisViewer": "थीसिस व्यूअर",
+    "page": "पृष्ठ"
+  },
+  "tabs": {
+    "ask": "पूछें",
+    "explore": "अन्वेषण करें",
+    "summarize": "सारांश दें",
+    "flashcards": "फ्लैशकार्ड"
+  },
+  "chat": {
+    "emptyStateTitle": "थीसिस से पूछें",
+    "emptyStateDescription": "प्रयास करें: \"शोध विधि का सारांश दें\", \"मुख्य परिणाम क्या हैं?\", या \"मुख्य शब्दों को परिभाषित करें\"",
+    "analyzing": "एआई थीसिस का विश्लेषण कर रहा है...",
+    "inputPlaceholder": "थीसिस के बारे में पूछें…",
+    "inputPlaceholderWaiting": "एआई प्रतिक्रिया की प्रतीक्षा कर रहे हैं...",
+    "jumpToPage": "पृष्ठ {page} पर जाएं"
+  },
+  "explore": {
+    "searchPlaceholder": "सिमेंटिक खोज…",
+    "searchButton": "खोजें",
+    "relevance": "प्रासंगिकता",
+    "page": "पृष्ठ"
+  },
+  "summarize": {
+    "from": "से",
+    "summarizeButton": "सारांश दें",
+    "summarizing": "सारांश बना रहे हैं…"
+  },
+  "flashcards": {
+    "topicPlaceholder": "विषय, उदा. \"कार्यप्रणाली\"",
+    "generateButton": "उत्पन्न करें",
+    "generating": "उत्पन्न कर रहे हैं…",
+    "emptyState": "एक विषय दर्ज करें और कार्ड बनाने के लिए उत्पन्न पर क्लिक करें"
+  },
+  "localeSwitcher": {
+    "label": "भाषा",
+    "locale": {
+      "en": "English",
+      "es": "Español",
+      "pt": "Português",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "zh": "中文",
+      "ja": "日本語",
+      "ko": "한국어",
+      "ar": "العربية",
+      "ru": "Русский",
+      "hi": "हिन्दी"
+    }
+  }
+}

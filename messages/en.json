@@ -38,7 +38,17 @@
     "label": "Language",
     "locale": {
       "en": "English",
-      "es": "Español"
+      "es": "Español",
+      "pt": "Português",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "zh": "中文",
+      "ja": "日本語",
+      "ko": "한국어",
+      "ar": "العربية",
+      "ru": "Русский",
+      "hi": "हिन्दी"
     }
   }
 }

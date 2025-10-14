@@ -1,0 +1,54 @@
+{
+  "page": {
+    "thesisViewer": "عارض الأطروحة",
+    "page": "صفحة"
+  },
+  "tabs": {
+    "ask": "اسأل",
+    "explore": "استكشف",
+    "summarize": "لخص",
+    "flashcards": "بطاقات"
+  },
+  "chat": {
+    "emptyStateTitle": "اسأل الأطروحة",
+    "emptyStateDescription": "جرب: \"لخص منهج البحث\"، \"ما هي النتائج الرئيسية؟\"، أو \"عرّف المصطلحات الأساسية\"",
+    "analyzing": "الذكاء الاصطناعي يحلل الأطروحة...",
+    "inputPlaceholder": "اسأل عن الأطروحة…",
+    "inputPlaceholderWaiting": "في انتظار استجابة الذكاء الاصطناعي...",
+    "jumpToPage": "الانتقال إلى الصفحة {page}"
+  },
+  "explore": {
+    "searchPlaceholder": "بحث دلالي…",
+    "searchButton": "بحث",
+    "relevance": "الصلة",
+    "page": "صفحة"
+  },
+  "summarize": {
+    "from": "إلى",
+    "summarizeButton": "لخص",
+    "summarizing": "جارٍ التلخيص…"
+  },
+  "flashcards": {
+    "topicPlaceholder": "الموضوع، مثال: \"المنهجية\"",
+    "generateButton": "إنشاء",
+    "generating": "جارٍ الإنشاء…",
+    "emptyState": "أدخل موضوعًا وانقر على إنشاء لإنشاء البطاقات"
+  },
+  "localeSwitcher": {
+    "label": "اللغة",
+    "locale": {
+      "en": "English",
+      "es": "Español",
+      "pt": "Português",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "zh": "中文",
+      "ja": "日本語",
+      "ko": "한국어",
+      "ar": "العربية",
+      "ru": "Русский",
+      "hi": "हिन्दी"
+    }
+  }
+}

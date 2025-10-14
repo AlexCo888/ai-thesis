@@ -1,0 +1,54 @@
+{
+  "page": {
+    "thesisViewer": "Thesis-Betrachter",
+    "page": "Seite"
+  },
+  "tabs": {
+    "ask": "Fragen",
+    "explore": "Erkunden",
+    "summarize": "Zusammenfassen",
+    "flashcards": "Karteikarten"
+  },
+  "chat": {
+    "emptyStateTitle": "Die Thesis befragen",
+    "emptyStateDescription": "Versuchen Sie: \"Fasse die Forschungsmethode zusammen\", \"Was sind die Hauptergebnisse?\", oder \"Definiere Schlüsselbegriffe.\"",
+    "analyzing": "KI analysiert die Thesis...",
+    "inputPlaceholder": "Frage zur Thesis stellen…",
+    "inputPlaceholderWaiting": "Warte auf KI-Antwort...",
+    "jumpToPage": "Zur Seite {page} springen"
+  },
+  "explore": {
+    "searchPlaceholder": "Semantische Suche…",
+    "searchButton": "Suchen",
+    "relevance": "Relevanz",
+    "page": "Seite"
+  },
+  "summarize": {
+    "from": "bis",
+    "summarizeButton": "Zusammenfassen",
+    "summarizing": "Zusammenfassung läuft…"
+  },
+  "flashcards": {
+    "topicPlaceholder": "Thema, z.B. \"Methodik\"",
+    "generateButton": "Generieren",
+    "generating": "Generierung läuft…",
+    "emptyState": "Geben Sie ein Thema ein und klicken Sie auf Generieren, um Karten zu erstellen"
+  },
+  "localeSwitcher": {
+    "label": "Sprache",
+    "locale": {
+      "en": "English",
+      "es": "Español",
+      "pt": "Português",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "zh": "中文",
+      "ja": "日本語",
+      "ko": "한국어",
+      "ar": "العربية",
+      "ru": "Русский",
+      "hi": "हिन्दी"
+    }
+  }
+}

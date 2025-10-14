@@ -1,0 +1,54 @@
+{
+  "page": {
+    "thesisViewer": "Просмотр диссертации",
+    "page": "Страница"
+  },
+  "tabs": {
+    "ask": "Спросить",
+    "explore": "Исследовать",
+    "summarize": "Резюмировать",
+    "flashcards": "Карточки"
+  },
+  "chat": {
+    "emptyStateTitle": "Спросить диссертацию",
+    "emptyStateDescription": "Попробуйте: \"Резюмируйте методологию исследования\", \"Каковы основные результаты?\", или \"Определите ключевые термины\"",
+    "analyzing": "ИИ анализирует диссертацию...",
+    "inputPlaceholder": "Задайте вопрос о диссертации…",
+    "inputPlaceholderWaiting": "Ожидание ответа ИИ...",
+    "jumpToPage": "Перейти на страницу {page}"
+  },
+  "explore": {
+    "searchPlaceholder": "Семантический поиск…",
+    "searchButton": "Поиск",
+    "relevance": "релевантность",
+    "page": "Страница"
+  },
+  "summarize": {
+    "from": "до",
+    "summarizeButton": "Резюмировать",
+    "summarizing": "Резюмирование…"
+  },
+  "flashcards": {
+    "topicPlaceholder": "Тема, например: \"Методология\"",
+    "generateButton": "Создать",
+    "generating": "Создание…",
+    "emptyState": "Введите тему и нажмите Создать для создания карточек"
+  },
+  "localeSwitcher": {
+    "label": "Язык",
+    "locale": {
+      "en": "English",
+      "es": "Español",
+      "pt": "Português",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "zh": "中文",
+      "ja": "日本語",
+      "ko": "한국어",
+      "ar": "العربية",
+      "ru": "Русский",
+      "hi": "हिन्दी"
+    }
+  }
+}

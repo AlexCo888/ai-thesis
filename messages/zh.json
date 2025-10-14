@@ -1,0 +1,54 @@
+{
+  "page": {
+    "thesisViewer": "论文查看器",
+    "page": "页面"
+  },
+  "tabs": {
+    "ask": "提问",
+    "explore": "探索",
+    "summarize": "总结",
+    "flashcards": "卡片"
+  },
+  "chat": {
+    "emptyStateTitle": "询问论文",
+    "emptyStateDescription": "试试：\"总结研究方法\"、\"主要结果是什么？\"或\"定义关键术语\"",
+    "analyzing": "AI正在分析论文...",
+    "inputPlaceholder": "询问关于论文的问题…",
+    "inputPlaceholderWaiting": "等待AI回复...",
+    "jumpToPage": "跳转到第 {page} 页"
+  },
+  "explore": {
+    "searchPlaceholder": "语义搜索…",
+    "searchButton": "搜索",
+    "relevance": "相关性",
+    "page": "页面"
+  },
+  "summarize": {
+    "from": "到",
+    "summarizeButton": "总结",
+    "summarizing": "总结中…"
+  },
+  "flashcards": {
+    "topicPlaceholder": "主题，例如 \"方法论\"",
+    "generateButton": "生成",
+    "generating": "生成中…",
+    "emptyState": "输入主题并点击生成来创建卡片"
+  },
+  "localeSwitcher": {
+    "label": "语言",
+    "locale": {
+      "en": "English",
+      "es": "Español",
+      "pt": "Português",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "zh": "中文",
+      "ja": "日本語",
+      "ko": "한국어",
+      "ar": "العربية",
+      "ru": "Русский",
+      "hi": "हिन्दी"
+    }
+  }
+}

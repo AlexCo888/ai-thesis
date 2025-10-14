@@ -1,0 +1,54 @@
+{
+  "page": {
+    "thesisViewer": "논문 뷰어",
+    "page": "페이지"
+  },
+  "tabs": {
+    "ask": "질문하기",
+    "explore": "탐색하기",
+    "summarize": "요약하기",
+    "flashcards": "플래시카드"
+  },
+  "chat": {
+    "emptyStateTitle": "논문에 질문하기",
+    "emptyStateDescription": "예시: \"연구 방법을 요약해주세요\", \"주요 결과는 무엇인가요?\", 또는 \"핵심 용어를 정의해주세요\"",
+    "analyzing": "AI가 논문을 분석하고 있습니다...",
+    "inputPlaceholder": "논문에 대해 질문하기…",
+    "inputPlaceholderWaiting": "AI 응답 대기 중...",
+    "jumpToPage": "{page} 페이지로 이동"
+  },
+  "explore": {
+    "searchPlaceholder": "의미 검색…",
+    "searchButton": "검색",
+    "relevance": "관련성",
+    "page": "페이지"
+  },
+  "summarize": {
+    "from": "에서",
+    "summarizeButton": "요약하기",
+    "summarizing": "요약 중…"
+  },
+  "flashcards": {
+    "topicPlaceholder": "주제, 예: \"방법론\"",
+    "generateButton": "생성",
+    "generating": "생성 중…",
+    "emptyState": "주제를 입력하고 생성을 클릭하여 카드 만들기"
+  },
+  "localeSwitcher": {
+    "label": "언어",
+    "locale": {
+      "en": "English",
+      "es": "Español",
+      "pt": "Português",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "zh": "中文",
+      "ja": "日本語",
+      "ko": "한국어",
+      "ar": "العربية",
+      "ru": "Русский",
+      "hi": "हिन्दी"
+    }
+  }
+}
