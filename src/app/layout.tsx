@@ -1,5 +1,5 @@
 import './globals.css';
-import { routing } from '@/i18n/routing';
+import { routing, locales, type Locale } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 
 interface RootLayoutProps {
@@ -8,7 +8,7 @@ interface RootLayoutProps {
 }
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
+  return locales.map((locale) => ({ locale }));
 }
 
 export default async function RootLayout({
@@ -18,7 +18,7 @@ export default async function RootLayout({
   const { locale } = await params;
 
   // Ensure that the incoming locale is valid
-  if (locale && !routing.locales.includes(locale as any)) {
+  if (locale && !locales.includes(locale as Locale)) {
     notFound();
   }
 

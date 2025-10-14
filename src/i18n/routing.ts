@@ -1,12 +1,16 @@
 import { defineRouting } from 'next-intl/routing';
 import { createNavigation } from 'next-intl/navigation';
 
+export type Locale = 'en' | 'es' | 'pt' | 'fr' | 'de' | 'it' | 'zh' | 'ja' | 'ko' | 'ar' | 'ru' | 'hi';
+
+export const locales: Locale[] = ['en', 'es', 'pt', 'fr', 'de', 'it', 'zh', 'ja', 'ko', 'ar', 'ru', 'hi'];
+
 export const routing = defineRouting({
   // A list of all locales that are supported
-  locales: ['en', 'es', 'pt', 'fr', 'de', 'it', 'zh', 'ja', 'ko', 'ar', 'ru', 'hi'],
+  locales,
 
   // Used when no locale matches
-  defaultLocale: 'en',
+  defaultLocale: 'en' as Locale,
 
   // Prefix mode controls how locale prefixes are added to URLs
   localePrefix: 'as-needed'
