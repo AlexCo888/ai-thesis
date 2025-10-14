@@ -33,6 +33,9 @@ export async function POST(req: Request) {
 Build ${n} concise flashcards (JSON array) from the provided RAG sources.${localeInstruction}
 Each item: { "q": string, "a": string, "page": number, "source": "id" }.
 Focus on definitions, formulas, key results, limitations. Pages MUST be correct.
+
+IMPORTANT: Use plain text or Unicode characters instead of LaTeX notation. For Greek letters, use Unicode (e.g., γ instead of $\\gamma$). Avoid backslashes in strings.
+
 SOURCES:
 ${sources
   .map((s, i) => `[#${i + 1}] page ${s.page}, id=${s.id}\n${s.content}`)
@@ -65,6 +68,23 @@ ${sources
     if (codeBlockMatch) {
       jsonText = codeBlockMatch[1].trim();
     }
+    
+    // Fix common LaTeX notation issues: replace LaTeX math with Unicode
+    // This handles cases like $\gamma$ -> γ, $\alpha$ -> α, etc.
+    jsonText = jsonText.replace(/\$\\gamma\$/g, 'γ');
+    jsonText = jsonText.replace(/\$\\alpha\$/g, 'α');
+    jsonText = jsonText.replace(/\$\\beta\$/g, 'β');
+    jsonText = jsonText.replace(/\$\\delta\$/g, 'δ');
+    jsonText = jsonText.replace(/\$\\Delta\$/g, 'Δ');
+    jsonText = jsonText.replace(/\$\\epsilon\$/g, 'ε');
+    jsonText = jsonText.replace(/\$\\theta\$/g, 'θ');
+    jsonText = jsonText.replace(/\$\\lambda\$/g, 'λ');
+    jsonText = jsonText.replace(/\$\\mu\$/g, 'μ');
+    jsonText = jsonText.replace(/\$\\pi\$/g, 'π');
+    jsonText = jsonText.replace(/\$\\sigma\$/g, 'σ');
+    jsonText = jsonText.replace(/\$\\Sigma\$/g, 'Σ');
+    jsonText = jsonText.replace(/\$\\omega\$/g, 'ω');
+    jsonText = jsonText.replace(/\$\\Omega\$/g, 'Ω');
     
     const arr = JSON.parse(jsonText);
     if (Array.isArray(arr)) {
