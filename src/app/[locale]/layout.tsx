@@ -31,10 +31,14 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       <div className="relative">
-        <div className="absolute top-4 right-4 z-50">
+        {/* LocaleSwitcher - Fixed position with proper mobile spacing */}
+        <div className="fixed top-2 right-2 md:top-4 md:right-4 z-50">
           <LocaleSwitcher />
         </div>
-        {children}
+        {/* Add top padding to prevent content overlap with LocaleSwitcher */}
+        <div className="pt-16 md:pt-0">
+          {children}
+        </div>
       </div>
     </NextIntlClientProvider>
   );
