@@ -17,7 +17,7 @@ import { useChat } from '@ai-sdk/react';
 import { DefaultChatTransport } from 'ai';
 import { useState } from 'react';
 import SourcesPanel from './SourcesPanel';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 type RagSourceHeader = {
   n: number;
@@ -33,12 +33,13 @@ export default function RagChat({
   onJumpToPage?: (p: number) => void;
 }) {
   const t = useTranslations('chat');
+  const locale = useLocale();
   const [input, setInput] = useState('');
   const [sources, setSources] = useState<RagSourceHeader[]>([]);
 
   const { messages, sendMessage, status } = useChat({
     transport: new DefaultChatTransport({
-      api: '/api/chat',
+      api: `/api/chat?locale=${locale}`,
       fetch: async (url, options) => {
         const res = await fetch(url, options);
         // Parse sources header we sent from the server for this answer

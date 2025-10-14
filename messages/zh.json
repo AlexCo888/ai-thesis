@@ -50,5 +50,48 @@
       "ru": "Русский",
       "hi": "हिन्दी"
     }
+  },
+  "flashcard": {
+    "answer": "答案",
+    "pageLabel": "第{page}页",
+    "aiThinking": "AI正在思考...",
+    "askAI": "向AI询问这张卡片",
+    "quickQuestions": "快速提问：",
+    "suggestions": {
+      "explain": "用更简单的术语解释这个",
+      "example": "给我一个例子",
+      "relate": "这与其他概念有什么关系？",
+      "memorize": "我应该记住什么？"
+    },
+    "generating": "AI正在生成回复...",
+    "noMessages": "还没有消息",
+    "askAnything": "询问有关这张卡片的任何问题",
+    "inputPlaceholder": "询问有关这张卡片的问题…",
+    "inputPlaceholderWaiting": "等待AI回复...",
+    "sources": "来源：",
+    "jumpToPage": "跳转到第{page}页",
+    "sourceCitation": "[#{n}] 第{page}页"
+  },
+  "sources": {
+    "used": "使用了{count}个来源",
+    "page": "页"
+  },
+  "pdf": {
+    "notDisplaying": "PDF未显示？",
+    "tryOptions": "尝试以下选项之一来查看PDF：",
+    "reload": "重新加载PDF",
+    "attempt": "尝试{count}",
+    "openNewTab": "在新标签页中打开",
+    "download": "下载PDF",
+    "closeAndTry": "关闭并重试",
+    "troubleshooting": "故障排除：",
+    "tip1": "Chrome和Edge具有最佳的PDF支持",
+    "tip2": "检查浏览器的PDF查看器设置",
+    "tip3": "尝试暂时禁用扩展程序",
+    "tip4": "使用\\\"在新标签页中打开\\\"以使用本机PDF查看器",
+    "notLoading": "PDF未加载？单击获取选项"
+  },
+  "citation": {
+    "jumpToPage": "跳转到第{page}页"
   }
 }

@@ -50,5 +50,48 @@
       "ru": "Русский",
       "hi": "हिन्दी"
     }
+  },
+  "flashcard": {
+    "answer": "Answer",
+    "pageLabel": "Page {page}",
+    "aiThinking": "AI is thinking...",
+    "askAI": "Ask AI about this flashcard",
+    "quickQuestions": "Quick questions:",
+    "suggestions": {
+      "explain": "Explain this in simpler terms",
+      "example": "Give me an example",
+      "relate": "How does this relate to other concepts?",
+      "memorize": "What should I memorize?"
+    },
+    "generating": "AI is generating response...",
+    "noMessages": "No messages yet",
+    "askAnything": "Ask anything about this flashcard",
+    "inputPlaceholder": "Ask about this flashcard…",
+    "inputPlaceholderWaiting": "Waiting for AI response...",
+    "sources": "Sources:",
+    "jumpToPage": "Jump to page {page}",
+    "sourceCitation": "[#{n}] Page {page}"
+  },
+  "sources": {
+    "used": "Used {count} sources",
+    "page": "Page"
+  },
+  "pdf": {
+    "notDisplaying": "PDF Not Displaying?",
+    "tryOptions": "Try one of these options to view the PDF:",
+    "reload": "Reload PDF",
+    "attempt": "Attempt {count}",
+    "openNewTab": "Open in New Tab",
+    "download": "Download PDF",
+    "closeAndTry": "Close and try again",
+    "troubleshooting": "Troubleshooting:",
+    "tip1": "Chrome and Edge have the best PDF support",
+    "tip2": "Check your browser's PDF viewer settings",
+    "tip3": "Try disabling extensions temporarily",
+    "tip4": "Use \"Open in New Tab\" for native PDF viewer",
+    "notLoading": "PDF not loading? Click for options"
+  },
+  "citation": {
+    "jumpToPage": "Jump to page {page}"
   }
 }

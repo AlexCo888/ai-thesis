@@ -4,8 +4,26 @@ import { buildContext, searchSimilar } from '@/lib/rag';
 
 export const maxDuration = 30;
 
+const localeInstructions: Record<string, string> = {
+  es: 'Responde SIEMPRE en español.',
+  pt: 'Responda SEMPRE em português.',
+  fr: 'Répondez TOUJOURS en français.',
+  de: 'Antworten Sie IMMER auf Deutsch.',
+  it: 'Rispondi SEMPRE in italiano.',
+  zh: '始终用中文回答。',
+  ja: '常に日本語で回答してください。',
+  ko: '항상 한국어로 답변하세요.',
+  ar: 'أجب دائمًا باللغة العربية.',
+  ru: 'Всегда отвечайте на русском языке.',
+  hi: 'हमेशा हिंदी में जवाब दें।'
+};
+
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
+
+  // Get locale from URL params
+  const url = new URL(req.url);
+  const locale = url.searchParams.get('locale') || 'en';
 
   // Check for flashcard context in headers
   const flashcardContextHeader = req.headers.get('x-flashcard-context');
@@ -30,11 +48,15 @@ export async function POST(req: Request) {
   const sources = userText ? await searchSimilar(userText, 6) : [];
   const context = buildContext(sources);
 
-  // Build system prompt with optional flashcard context
+  // Build system prompt with locale instruction and optional flashcard context
+  const localeInstruction = locale !== 'en' && localeInstructions[locale] 
+    ? `\n\nIMPORTANT: ${localeInstructions[locale]}`
+    : '';
+
   let systemPrompt = `
 You are a precise thesis assistant using a RAG knowledge base.
 Use ONLY the provided CONTEXT to answer.
-Cite using [#n] markers that correspond to the numbered sources below.
+Cite using [#n] markers that correspond to the numbered sources below.${localeInstruction}
 
 CONTEXT:
 ${context}

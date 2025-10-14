@@ -50,5 +50,49 @@
       "ru": "Русский",
       "hi": "हिन्दी"
     }
+  },
+  "flashcard": {
+    "answer": "Antwort",
+    "pageLabel": "Seite {page}",
+    "aiThinking": "KI denkt nach...",
+    "askAI": "Fragen Sie die KI zu dieser Karte",
+    "quickQuestions": "Schnelle Fragen:",
+    "suggestions": {
+      "explain": "Erklären Sie dies in einfacheren Worten",
+      "example": "Geben Sie mir ein Beispiel",
+      "relate": "Wie bezieht sich dies auf andere Konzepte?",
+      "memorize": "Was sollte ich auswendig lernen?"
+    },
+    "generating": "KI generiert Antwort...",
+    "noMessages": "Noch keine Nachrichten",
+    "askAnything": "Fragen Sie alles über diese Karte",
+    "inputPlaceholder": "Frage zu dieser Karte…",
+    "inputPlaceholderWaiting": "Warten auf KI-Antwort...",
+    "sources": "Quellen:",
+    "jumpToPage": "Zur Seite {page} springen",
+    "sourceCitation": "[#{n}] Seite {page}"
+  },
+  "sources": {
+    "used": "{count} Quellen verwendet",
+    "page": "Seite"
+  },
+  "pdf": {
+    "notDisplaying": "PDF wird nicht angezeigt?",
+    "tryOptions": "Probieren Sie eine dieser Optionen, um das PDF anzuzeigen:",
+    "reload": "PDF neu laden",
+    "attempt": "Versuch {count}",
+    "openNewTab": "In neuem Tab öffnen",
+    "download": "PDF herunterladen",
+    "closeAndTry": "Schließen und erneut versuchen",
+    "troubleshooting": "Fehlerbehebung:",
+    "tip1": "Chrome und Edge haben die beste PDF-Unterstützung",
+    "tip2": "Überprüfen Sie die PDF-Viewer-Einstellungen Ihres Browsers",
+    "tip3": "Versuchen Sie, Erweiterungen vorübergehend zu deaktivieren",
+    "tip4": "Verwenden Sie \"In neuem Tab öffnen\" für den nativen PDF-Viewer",
+    "notLoading": "PDF lädt nicht? Klicken Sie für Optionen"
+  },
+  "citation": {
+    "jumpToPage": "Zur Seite {page} springen"
   }
 }
+

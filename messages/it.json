@@ -50,5 +50,48 @@
       "ru": "Русский",
       "hi": "हिन्दी"
     }
+  },
+  "flashcard": {
+    "answer": "Risposta",
+    "pageLabel": "Pagina {page}",
+    "aiThinking": "L'IA sta pensando...",
+    "askAI": "Chiedi all'IA su questa scheda",
+    "quickQuestions": "Domande rapide:",
+    "suggestions": {
+      "explain": "Spiega questo in termini più semplici",
+      "example": "Dammi un esempio",
+      "relate": "Come si relaziona questo ad altri concetti?",
+      "memorize": "Cosa dovrei memorizzare?"
+    },
+    "generating": "L'IA sta generando una risposta...",
+    "noMessages": "Nessun messaggio ancora",
+    "askAnything": "Chiedi qualsiasi cosa su questa scheda",
+    "inputPlaceholder": "Chiedi informazioni su questa scheda…",
+    "inputPlaceholderWaiting": "In attesa della risposta dell'IA...",
+    "sources": "Fonti:",
+    "jumpToPage": "Vai alla pagina {page}",
+    "sourceCitation": "[#{n}] Pagina {page}"
+  },
+  "sources": {
+    "used": "Usate {count} fonti",
+    "page": "Pagina"
+  },
+  "pdf": {
+    "notDisplaying": "Il PDF non viene visualizzato?",
+    "tryOptions": "Prova una di queste opzioni per visualizzare il PDF:",
+    "reload": "Ricarica PDF",
+    "attempt": "Tentativo {count}",
+    "openNewTab": "Apri in una nuova scheda",
+    "download": "Scarica PDF",
+    "closeAndTry": "Chiudi e riprova",
+    "troubleshooting": "Risoluzione dei problemi:",
+    "tip1": "Chrome ed Edge hanno il miglior supporto PDF",
+    "tip2": "Controlla le impostazioni del visualizzatore PDF del tuo browser",
+    "tip3": "Prova a disabilitare temporaneamente le estensioni",
+    "tip4": "Usa \"Apri in una nuova scheda\" per il visualizzatore PDF nativo",
+    "notLoading": "Il PDF non carica? Clicca per le opzioni"
+  },
+  "citation": {
+    "jumpToPage": "Vai alla pagina {page}"
   }
 }

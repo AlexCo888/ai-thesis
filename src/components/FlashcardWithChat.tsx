@@ -20,6 +20,7 @@ import { MessageSquare, ChevronDown, ChevronUp } from 'lucide-react';
 import { useChat } from '@ai-sdk/react';
 import { DefaultChatTransport } from 'ai';
 import { useState } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
 
 interface Flashcard {
   q: string;
@@ -47,6 +48,8 @@ export default function FlashcardWithChat({
   index,
   onPageJump,
 }: FlashcardWithChatProps) {
+  const t = useTranslations('flashcard');
+  const locale = useLocale();
   const [isOpen, setIsOpen] = useState(false);
   const [isChatExpanded, setIsChatExpanded] = useState(false);
   const [input, setInput] = useState('');
@@ -56,7 +59,7 @@ export default function FlashcardWithChat({
   const { messages, sendMessage, status } = useChat({
     id: `flashcard-${flashcard.source}-${index}`, // Unique ID per flashcard
     transport: new DefaultChatTransport({
-      api: '/api/chat',
+      api: `/api/chat?locale=${locale}`,
       fetch: async (url, options) => {
         // Add flashcard context as header for all messages
         const modifiedOptions = {
@@ -118,10 +121,10 @@ export default function FlashcardWithChat({
   const isLoading = status === 'streaming' || status === 'submitted';
 
   const suggestions = [
-    'Explain this in simpler terms',
-    'Give me an example',
-    'How does this relate to other concepts?',
-    'What should I memorize?',
+    t('suggestions.explain'),
+    t('suggestions.example'),
+    t('suggestions.relate'),
+    t('suggestions.memorize'),
   ];
 
   return (
@@ -147,7 +150,7 @@ export default function FlashcardWithChat({
         {/* Flashcard Answer */}
         <div className="px-3 pb-3 space-y-3">
           <div>
-            <div className="font-semibold text-sm mb-1">Answer</div>
+            <div className="font-semibold text-sm mb-1">{t('answer')}</div>
             <div className="text-sm text-muted-foreground leading-relaxed">
               {flashcard.a || '—'}
             </div>
@@ -157,7 +160,7 @@ export default function FlashcardWithChat({
                 onClick={() => onPageJump?.(flashcard.page)}
                 type="button"
               >
-                📄 Page {flashcard.page}
+                📄 {t('pageLabel', { page: flashcard.page })}
               </button>
             )}
           </div>
@@ -176,7 +179,7 @@ export default function FlashcardWithChat({
                 <MessageSquare className="size-4" />
               )}
               <span>
-                {isLoading ? 'AI is thinking...' : 'Ask AI about this flashcard'}
+                {isLoading ? t('aiThinking') : t('askAI')}
               </span>
               {isChatExpanded ? (
                 <ChevronUp className="size-3" />
@@ -196,7 +199,7 @@ export default function FlashcardWithChat({
                 {messages.length === 0 && !isLoading && (
                   <div>
                     <div className="text-xs text-muted-foreground mb-2">
-                      Quick questions:
+                      {t('quickQuestions')}
                     </div>
                     <Suggestions>
                       {suggestions.map((s) => (
@@ -219,15 +222,15 @@ export default function FlashcardWithChat({
                       <div className="flex items-center justify-center h-full">
                         <div className="flex flex-col items-center gap-3 text-muted-foreground">
                           <Loader size={24} />
-                          <p className="text-sm">AI is generating response...</p>
+                          <p className="text-sm">{t('generating')}</p>
                         </div>
                       </div>
                     )}
                     {messages.length === 0 ? (
                       <ConversationEmptyState
                         icon={<MessageSquare className="size-8" />}
-                        title="No messages yet"
-                        description="Ask anything about this flashcard"
+                        title={t('noMessages')}
+                        description={t('askAnything')}
                       />
                     ) : (
                       messages.map((message) => (
@@ -261,7 +264,7 @@ export default function FlashcardWithChat({
                 <PromptInput onSubmit={handleSubmit} className="w-full relative">
                   <PromptInputTextarea
                     value={input}
-                    placeholder={isLoading ? 'Waiting for AI response...' : 'Ask about this flashcard…'}
+                    placeholder={isLoading ? t('inputPlaceholderWaiting') : t('inputPlaceholder')}
                     onChange={(e) => setInput(e.currentTarget.value)}
                     className="pr-12 min-h-[60px]"
                     disabled={isLoading}
@@ -277,7 +280,7 @@ export default function FlashcardWithChat({
                 {sources.length > 0 && messages.length > 0 && (
                   <div className="border-t pt-2 mt-2">
                     <div className="text-xs font-medium text-muted-foreground mb-2">
-                      Sources:
+                      {t('sources')}
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {sources.map((s) => (
@@ -285,10 +288,10 @@ export default function FlashcardWithChat({
                           key={s.id}
                           className="text-xs px-2 py-1 rounded-md bg-secondary hover:bg-secondary/80 transition-colors border border-border disabled:opacity-50 disabled:cursor-not-allowed"
                           onClick={() => onPageJump?.(s.page)}
-                          title={`Jump to page ${s.page}`}
+                          title={t('jumpToPage', { page: s.page })}
                           disabled={isLoading}
                         >
-                          [#{s.n}] Page {s.page}
+                          {t('sourceCitation', { n: s.n, page: s.page })}
                         </button>
                       ))}
                     </div>

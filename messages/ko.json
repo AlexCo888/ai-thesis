@@ -50,5 +50,48 @@
       "ru": "Русский",
       "hi": "हिन्दी"
     }
+  },
+  "flashcard": {
+    "answer": "답변",
+    "pageLabel": "{page}페이지",
+    "aiThinking": "AI가 생각하고 있습니다...",
+    "askAI": "이 카드에 대해 AI에게 물어보기",
+    "quickQuestions": "빠른 질문:",
+    "suggestions": {
+      "explain": "더 간단한 용어로 설명해주세요",
+      "example": "예를 들어주세요",
+      "relate": "이것이 다른 개념과 어떻게 관련되나요?",
+      "memorize": "무엇을 암기해야 하나요?"
+    },
+    "generating": "AI가 응답을 생성하고 있습니다...",
+    "noMessages": "아직 메시지가 없습니다",
+    "askAnything": "이 카드에 대해 무엇이든 질문하세요",
+    "inputPlaceholder": "이 카드에 대해 질문…",
+    "inputPlaceholderWaiting": "AI 응답을 기다리는 중...",
+    "sources": "출처:",
+    "jumpToPage": "{page}페이지로 이동",
+    "sourceCitation": "[#{n}] {page}페이지"
+  },
+  "sources": {
+    "used": "{count}개의 출처 사용됨",
+    "page": "페이지"
+  },
+  "pdf": {
+    "notDisplaying": "PDF가 표시되지 않나요?",
+    "tryOptions": "PDF를 보려면 다음 옵션 중 하나를 시도하세요:",
+    "reload": "PDF 다시 로드",
+    "attempt": "시도 {count}",
+    "openNewTab": "새 탭에서 열기",
+    "download": "PDF 다운로드",
+    "closeAndTry": "닫고 다시 시도",
+    "troubleshooting": "문제 해결:",
+    "tip1": "Chrome과 Edge가 최고의 PDF 지원을 제공합니다",
+    "tip2": "브라우저의 PDF 뷰어 설정을 확인하세요",
+    "tip3": "확장 프로그램을 일시적으로 비활성화해 보세요",
+    "tip4": "네이티브 PDF 뷰어를 사용하려면 \"새 탭에서 열기\"를 사용하세요",
+    "notLoading": "PDF가 로드되지 않나요? 옵션을 보려면 클릭하세요"
+  },
+  "citation": {
+    "jumpToPage": "{page}페이지로 이동"
   }
 }

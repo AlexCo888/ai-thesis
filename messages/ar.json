@@ -50,5 +50,48 @@
       "ru": "Русский",
       "hi": "हिन्दी"
     }
+  },
+  "flashcard": {
+    "answer": "الإجابة",
+    "pageLabel": "صفحة {page}",
+    "aiThinking": "الذكاء الاصطناعي يفكر...",
+    "askAI": "اسأل الذكاء الاصطناعي عن هذه البطاقة",
+    "quickQuestions": "أسئلة سريعة:",
+    "suggestions": {
+      "explain": "اشرح هذا بعبارات أبسط",
+      "example": "أعطني مثالاً",
+      "relate": "كيف يرتبط هذا بمفاهيم أخرى؟",
+      "memorize": "ماذا يجب أن أحفظ؟"
+    },
+    "generating": "الذكاء الاصطناعي يولد الإجابة...",
+    "noMessages": "لا توجد رسائل حتى الآن",
+    "askAnything": "اسأل أي شيء عن هذه البطاقة",
+    "inputPlaceholder": "اسأل عن هذه البطاقة…",
+    "inputPlaceholderWaiting": "في انتظار إجابة الذكاء الاصطناعي...",
+    "sources": "المصادر:",
+    "jumpToPage": "انتقل إلى الصفحة {page}",
+    "sourceCitation": "[#{n}] صفحة {page}"
+  },
+  "sources": {
+    "used": "استخدام {count} من المصادر",
+    "page": "صفحة"
+  },
+  "pdf": {
+    "notDisplaying": "لا يظهر ملف PDF؟",
+    "tryOptions": "جرب أحد هذه الخيارات لعرض ملف PDF:",
+    "reload": "إعادة تحميل PDF",
+    "attempt": "محاولة {count}",
+    "openNewTab": "فتح في علامة تبويب جديدة",
+    "download": "تحميل PDF",
+    "closeAndTry": "إغلاق والمحاولة مرة أخرى",
+    "troubleshooting": "استكشاف الأخطاء:",
+    "tip1": "Chrome و Edge لديهما أفضل دعم لـ PDF",
+    "tip2": "تحقق من إعدادات عارض PDF في متصفحك",
+    "tip3": "حاول تعطيل الإضافات مؤقتًا",
+    "tip4": "استخدم \\\"فتح في علامة تبويب جديدة\\\" لعارض PDF الأصلي",
+    "notLoading": "PDF لا يتم تحميله؟ انقر للحصول على الخيارات"
+  },
+  "citation": {
+    "jumpToPage": "انتقل إلى الصفحة {page}"
   }
 }

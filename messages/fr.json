@@ -50,5 +50,49 @@
       "ru": "Русский",
       "hi": "हिन्दी"
     }
+  },
+  "flashcard": {
+    "answer": "Réponse",
+    "pageLabel": "Page {page}",
+    "aiThinking": "L'IA réfléchit...",
+    "askAI": "Demander à l'IA à propos de cette carte",
+    "quickQuestions": "Questions rapides:",
+    "suggestions": {
+      "explain": "Expliquez cela en termes plus simples",
+      "example": "Donnez-moi un exemple",
+      "relate": "Comment cela se rapporte-t-il à d'autres concepts?",
+      "memorize": "Que dois-je mémoriser?"
+    },
+    "generating": "L'IA génère une réponse...",
+    "noMessages": "Pas encore de messages",
+    "askAnything": "Demandez n'importe quoi sur cette carte",
+    "inputPlaceholder": "Posez une question sur cette carte…",
+    "inputPlaceholderWaiting": "En attente de la réponse de l'IA...",
+    "sources": "Sources:",
+    "jumpToPage": "Aller à la page {page}",
+    "sourceCitation": "[#{n}] Page {page}"
+  },
+  "sources": {
+    "used": "Utilisé {count} sources",
+    "page": "Page"
+  },
+  "pdf": {
+    "notDisplaying": "Le PDF ne s'affiche pas?",
+    "tryOptions": "Essayez l'une de ces options pour afficher le PDF:",
+    "reload": "Recharger le PDF",
+    "attempt": "Tentative {count}",
+    "openNewTab": "Ouvrir dans un nouvel onglet",
+    "download": "Télécharger le PDF",
+    "closeAndTry": "Fermer et réessayer",
+    "troubleshooting": "Dépannage:",
+    "tip1": "Chrome et Edge ont le meilleur support PDF",
+    "tip2": "Vérifiez les paramètres du visualiseur PDF de votre navigateur",
+    "tip3": "Essayez de désactiver temporairement les extensions",
+    "tip4": "Utilisez \"Ouvrir dans un nouvel onglet\" pour le visualiseur PDF natif",
+    "notLoading": "Le PDF ne charge pas? Cliquez pour les options"
+  },
+  "citation": {
+    "jumpToPage": "Aller à la page {page}"
   }
 }
+

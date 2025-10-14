@@ -5,7 +5,7 @@ import RagChat from '@/components/RagChat';
 import PdfPane from '@/components/PdfPane';
 import FlashcardWithChat from '@/components/FlashcardWithChat';
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 interface SearchResult {
   id: string;
@@ -65,6 +65,7 @@ function ExploreTab() {
 
 function SummarizeTab() {
   const t = useTranslations('summarize');
+  const locale = useLocale();
   const [fromPage, setFromPage] = useState<number>(1);
   const [toPage, setToPage] = useState<number>(1);
   const [text, setText] = useState<string>('');
@@ -73,7 +74,7 @@ function SummarizeTab() {
   const run = async () => {
     setLoading(true);
     setText('');
-    const res = await fetch('/api/rag/summarize', {
+    const res = await fetch(`/api/rag/summarize?locale=${locale}`, {
       method: 'POST',
       body: JSON.stringify({ fromPage, toPage }),
       headers: { 'content-type': 'application/json' }
@@ -118,6 +119,7 @@ function SummarizeTab() {
 
 function FlashcardsTab({ onPageJump }: { onPageJump?: (page: number) => void }) {
   const t = useTranslations('flashcards');
+  const locale = useLocale();
   const [topic, setTopic] = useState('');
   const [cards, setCards] = useState<Flashcard[]>([]);
   const [loading, setLoading] = useState(false);
@@ -126,7 +128,7 @@ function FlashcardsTab({ onPageJump }: { onPageJump?: (page: number) => void }) 
   const run = async () => {
     setLoading(true);
     setError('');
-    const res = await fetch('/api/rag/flashcards', {
+    const res = await fetch(`/api/rag/flashcards?locale=${locale}`, {
       method: 'POST',
       body: JSON.stringify({ topic, n: 12 }),
       headers: { 'content-type': 'application/json' }

@@ -50,5 +50,48 @@
       "ru": "Русский",
       "hi": "हिन्दी"
     }
+  },
+  "flashcard": {
+    "answer": "答え",
+    "pageLabel": "ページ{page}",
+    "aiThinking": "AIが考えています...",
+    "askAI": "このカードについてAIに聞く",
+    "quickQuestions": "クイック質問：",
+    "suggestions": {
+      "explain": "これをより簡単な言葉で説明してください",
+      "example": "例を教えてください",
+      "relate": "これは他の概念とどのように関連していますか？",
+      "memorize": "何を覚えるべきですか？"
+    },
+    "generating": "AIが応答を生成しています...",
+    "noMessages": "まだメッセージがありません",
+    "askAnything": "このカードについて何でも質問してください",
+    "inputPlaceholder": "このカードについて質問…",
+    "inputPlaceholderWaiting": "AI応答を待っています...",
+    "sources": "ソース：",
+    "jumpToPage": "ページ{page}にジャンプ",
+    "sourceCitation": "[#{n}] ページ{page}"
+  },
+  "sources": {
+    "used": "{count}個のソースを使用",
+    "page": "ページ"
+  },
+  "pdf": {
+    "notDisplaying": "PDFが表示されませんか？",
+    "tryOptions": "PDFを表示するには、次のオプションのいずれかを試してください：",
+    "reload": "PDFを再読み込み",
+    "attempt": "試行{count}",
+    "openNewTab": "新しいタブで開く",
+    "download": "PDFをダウンロード",
+    "closeAndTry": "閉じて再試行",
+    "troubleshooting": "トラブルシューティング：",
+    "tip1": "ChromeとEdgeが最高のPDFサポートを提供",
+    "tip2": "ブラウザのPDFビューアー設定を確認",
+    "tip3": "一時的に拡張機能を無効にしてみる",
+    "tip4": "ネイティブPDFビューアーには「新しいタブで開く」を使用",
+    "notLoading": "PDFが読み込まれませんか？クリックしてオプションを表示"
+  },
+  "citation": {
+    "jumpToPage": "ページ{page}にジャンプ"
   }
 }

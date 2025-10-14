@@ -1,6 +1,7 @@
 'use client';
 
 import { Response } from '@/components/ai-elements/response';
+import { useTranslations } from 'next-intl';
 
 interface CitationTextProps {
   text: string;
@@ -9,6 +10,7 @@ interface CitationTextProps {
 }
 
 export default function CitationText({ text, sources, onPageJump }: CitationTextProps) {
+  const t = useTranslations('citation');
   // Split text by citation patterns [#n]
   const parts = text.split(/(\[#\d+\])/g);
 
@@ -27,7 +29,7 @@ export default function CitationText({ text, sources, onPageJump }: CitationText
                 key={index}
                 onClick={() => onPageJump(source.page)}
                 className="inline-flex items-center text-primary hover:text-primary/80 hover:underline font-medium cursor-pointer transition-colors mx-0.5"
-                title={`Jump to page ${source.page}`}
+                title={t('jumpToPage', { page: source.page })}
                 type="button"
               >
                 [{citationNum}]

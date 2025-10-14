@@ -50,5 +50,48 @@
       "ru": "Русский",
       "hi": "हिन्दी"
     }
+  },
+  "flashcard": {
+    "answer": "Respuesta",
+    "pageLabel": "Página {page}",
+    "aiThinking": "La IA está pensando...",
+    "askAI": "Pregunta a la IA sobre esta tarjeta",
+    "quickQuestions": "Preguntas rápidas:",
+    "suggestions": {
+      "explain": "Explica esto en términos más simples",
+      "example": "Dame un ejemplo",
+      "relate": "¿Cómo se relaciona esto con otros conceptos?",
+      "memorize": "¿Qué debo memorizar?"
+    },
+    "generating": "La IA está generando una respuesta...",
+    "noMessages": "Aún no hay mensajes",
+    "askAnything": "Pregunta cualquier cosa sobre esta tarjeta",
+    "inputPlaceholder": "Pregunta sobre esta tarjeta…",
+    "inputPlaceholderWaiting": "Esperando respuesta de la IA...",
+    "sources": "Fuentes:",
+    "jumpToPage": "Ir a la página {page}",
+    "sourceCitation": "[#{n}] Página {page}"
+  },
+  "sources": {
+    "used": "Usadas {count} fuentes",
+    "page": "Página"
+  },
+  "pdf": {
+    "notDisplaying": "¿No se muestra el PDF?",
+    "tryOptions": "Prueba una de estas opciones para ver el PDF:",
+    "reload": "Recargar PDF",
+    "attempt": "Intento {count}",
+    "openNewTab": "Abrir en Nueva Pestaña",
+    "download": "Descargar PDF",
+    "closeAndTry": "Cerrar e intentar de nuevo",
+    "troubleshooting": "Solución de problemas:",
+    "tip1": "Chrome y Edge tienen el mejor soporte de PDF",
+    "tip2": "Verifica la configuración del visor de PDF de tu navegador",
+    "tip3": "Intenta desactivar las extensiones temporalmente",
+    "tip4": "Usa \"Abrir en Nueva Pestaña\" para el visor nativo de PDF",
+    "notLoading": "¿El PDF no carga? Haz clic para opciones"
+  },
+  "citation": {
+    "jumpToPage": "Ir a la página {page}"
   }
 }
