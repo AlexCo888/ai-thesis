@@ -181,8 +181,8 @@ export default function Page() {
     <div className="h-screen flex flex-col">
       <div className="flex-1 container mx-auto max-w-[1800px] px-2 lg:px-4 py-2 lg:py-4 overflow-hidden">
         <div className="flex flex-col lg:grid lg:grid-cols-[1fr_500px] xl:grid-cols-[1fr_600px] 2xl:grid-cols-[1fr_700px] gap-2 lg:gap-4 h-full">
-          {/* Left: App - Takes priority on mobile (60% of screen) */}
-          <div className="flex flex-col border rounded-lg shadow-sm p-2 lg:p-4 bg-white dark:bg-gray-950 overflow-hidden min-h-0 h-[60vh] lg:h-auto">
+          {/* Left: App - Takes priority on mobile (75% of screen) */}
+          <div className="flex flex-col border rounded-lg shadow-sm p-2 lg:p-4 bg-white dark:bg-gray-950 overflow-hidden min-h-0 h-[75vh] lg:h-auto">
             <Tabs
               tabs={[
                 { label: 'Ask', content: <RagChat onJumpToPage={(p) => setPdfPage(p)} /> },
