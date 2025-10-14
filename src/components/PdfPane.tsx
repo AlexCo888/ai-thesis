@@ -11,16 +11,30 @@ export default function PdfPane({ page }: PdfPaneProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [showOptions, setShowOptions] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile/tablet viewport
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Handle page navigation
   useEffect(() => {
     if (iframeRef.current && page) {
       const base = '/thesis.pdf';
       const timestamp = retryCount > 0 ? `?v=${retryCount}` : '';
-      const newUrl = `${base}${timestamp}#page=${page}&view=FitH`;
+      // Use Fit view for mobile to prevent scrollbars, FitH for desktop
+      const view = isMobile ? 'Fit' : 'FitH';
+      const newUrl = `${base}${timestamp}#page=${page}&view=${view}`;
       iframeRef.current.src = newUrl;
     }
-  }, [page, retryCount]);
+  }, [page, retryCount, isMobile]);
 
   // Retry loading the PDF
   const handleRetry = () => {
@@ -46,12 +60,14 @@ export default function PdfPane({ page }: PdfPaneProps) {
   // Build the PDF URL with cache busting
   const pdfUrl = (() => {
     const timestamp = retryCount > 0 ? `?v=${retryCount}` : '';
-    const pageParam = page ? `#page=${page}&view=FitH` : '#view=FitH';
+    // Use Fit view for mobile to prevent scrollbars, FitH for desktop
+    const view = isMobile ? 'Fit' : 'FitH';
+    const pageParam = page ? `#page=${page}&view=${view}` : `#view=${view}`;
     return `/thesis.pdf${timestamp}${pageParam}`;
   })();
 
   return (
-    <div className="relative w-full h-full bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800">
+    <div className="relative w-full h-full bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800 touch-pan-y touch-pan-x">
       {/* Fallback Options - Show on demand */}
       {showOptions && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/95 dark:bg-gray-950/95 backdrop-blur-sm z-20 p-6">
@@ -128,9 +144,12 @@ export default function PdfPane({ page }: PdfPaneProps) {
         src={pdfUrl}
         className="w-full h-full border-0 bg-white dark:bg-gray-950"
         style={{
-          minHeight: '100%'
+          minHeight: '100%',
+          maxWidth: '100%',
+          overflow: isMobile ? 'hidden' : 'auto'
         }}
         allow="fullscreen"
+        loading="lazy"
       />
     </div>
   );

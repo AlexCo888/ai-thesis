@@ -182,7 +182,7 @@ export default function Page() {
       <div className="flex-1 container mx-auto max-w-[1800px] px-4 py-4 overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_500px] xl:grid-cols-[1fr_600px] 2xl:grid-cols-[1fr_700px] gap-4 h-full">
           {/* Left: App */}
-          <div className="flex flex-col border rounded-lg shadow-sm p-4 bg-white dark:bg-gray-950 overflow-hidden">
+          <div className="flex flex-col border rounded-lg shadow-sm p-4 bg-white dark:bg-gray-950 overflow-hidden min-h-0">
             <Tabs
               tabs={[
                 { label: 'Ask', content: <RagChat onJumpToPage={(p) => setPdfPage(p)} /> },
@@ -194,7 +194,7 @@ export default function Page() {
           </div>
 
           {/* Right: PDF pane - Full height optimized */}
-          <div className="flex flex-col border rounded-lg shadow-sm bg-white dark:bg-gray-950 overflow-hidden">
+          <div className="flex flex-col border rounded-lg shadow-sm bg-white dark:bg-gray-950 overflow-hidden h-[500px] lg:h-auto min-h-0">
             <div className="flex-shrink-0 px-4 pt-4 pb-3 border-b flex items-center justify-between">
               <span className="text-sm font-semibold">Thesis Viewer</span>
               {pdfPage && (
@@ -203,7 +203,7 @@ export default function Page() {
                 </span>
               )}
             </div>
-            <div className="flex-1 p-4 overflow-hidden">
+            <div className="flex-1 p-4 overflow-hidden min-h-0">
               <PdfPane page={pdfPage} />
             </div>
           </div>
