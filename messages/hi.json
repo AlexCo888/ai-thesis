@@ -25,8 +25,20 @@
   },
   "summarize": {
     "from": "से",
+    "fromPageLabel": "पृष्ठ से",
+    "toPageLabel": "पृष्ठ तक",
     "summarizeButton": "सारांश दें",
-    "summarizing": "सारांश बना रहे हैं…"
+    "summarizing": "सारांश बना रहे हैं…",
+    "quickActions": "त्वरित क्रियाएँ",
+    "customPromptLabel": "कस्टम निर्देश (वैकल्पिक)",
+    "customPromptPlaceholder": "उदा., \"अध्याय 2 का सारांश दें, कार्यप्रणाली पर ध्यान केंद्रित करते हुए\" या \"निष्कर्षों का संक्षिप्त अवलोकन\"",
+    "result": "सारांश",
+    "suggestions": {
+      "brief": "संक्षिप्त सारांश",
+      "detailed": "उद्धरणों के साथ विस्तृत सारांश",
+      "keyPoints": "केवल मुख्य बिंदु निकालें",
+      "methodology": "कार्यप्रणाली अनुभाग का सारांश दें"
+    }
   },
   "flashcards": {
     "topicPlaceholder": "विषय, उदा. \"कार्यप्रणाली\"",

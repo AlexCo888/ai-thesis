@@ -25,8 +25,20 @@
   },
   "summarize": {
     "from": "до",
+    "fromPageLabel": "С страницы",
+    "toPageLabel": "До страницы",
     "summarizeButton": "Резюмировать",
-    "summarizing": "Резюмирование…"
+    "summarizing": "Резюмирование…",
+    "quickActions": "Быстрые действия",
+    "customPromptLabel": "Пользовательские инструкции (необязательно)",
+    "customPromptPlaceholder": "напр., \"Резюмируйте главу 2, сосредоточившись на методологии\" или \"Краткий обзор выводов\"",
+    "result": "Резюме",
+    "suggestions": {
+      "brief": "Краткое резюме",
+      "detailed": "Подробное резюме с цитатами",
+      "keyPoints": "Извлечь только ключевые моменты",
+      "methodology": "Резюмировать раздел методологии"
+    }
   },
   "flashcards": {
     "topicPlaceholder": "Тема, например: \"Методология\"",

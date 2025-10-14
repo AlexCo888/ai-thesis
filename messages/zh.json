@@ -25,8 +25,20 @@
   },
   "summarize": {
     "from": "到",
+    "fromPageLabel": "从页面",
+    "toPageLabel": "到页面",
     "summarizeButton": "总结",
-    "summarizing": "总结中…"
+    "summarizing": "总结中…",
+    "quickActions": "快速操作",
+    "customPromptLabel": "自定义说明（可选）",
+    "customPromptPlaceholder": "例如，\"总结第2章，重点关注方法论\"或\"结论的简要概述\"",
+    "result": "总结",
+    "suggestions": {
+      "brief": "简要总结",
+      "detailed": "带引用的详细总结",
+      "keyPoints": "仅提取要点",
+      "methodology": "总结方法论部分"
+    }
   },
   "flashcards": {
     "topicPlaceholder": "主题，例如 \"方法论\"",

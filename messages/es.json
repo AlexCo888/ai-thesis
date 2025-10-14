@@ -25,8 +25,20 @@
   },
   "summarize": {
     "from": "a",
+    "fromPageLabel": "Desde Página",
+    "toPageLabel": "Hasta Página",
     "summarizeButton": "Resumir",
-    "summarizing": "Resumiendo…"
+    "summarizing": "Resumiendo…",
+    "quickActions": "Acciones Rápidas",
+    "customPromptLabel": "Instrucciones Personalizadas (Opcional)",
+    "customPromptPlaceholder": "ej., \"Resume el capítulo 2 enfocándote en la metodología\" o \"Resumen breve de las conclusiones\"",
+    "result": "Resumen",
+    "suggestions": {
+      "brief": "Resumen breve",
+      "detailed": "Resumen detallado con citas",
+      "keyPoints": "Extraer solo puntos clave",
+      "methodology": "Resumir sección de metodología"
+    }
   },
   "flashcards": {
     "topicPlaceholder": "Tema, ej. \"Metodología\"",

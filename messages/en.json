@@ -25,8 +25,20 @@
   },
   "summarize": {
     "from": "to",
+    "fromPageLabel": "From Page",
+    "toPageLabel": "To Page",
     "summarizeButton": "Summarize",
-    "summarizing": "Summarizing…"
+    "summarizing": "Summarizing…",
+    "quickActions": "Quick Actions",
+    "customPromptLabel": "Custom Instructions (Optional)",
+    "customPromptPlaceholder": "e.g., \"Summarize chapter 2 focusing on methodology\" or \"Brief overview of conclusions\"",
+    "result": "Summary",
+    "suggestions": {
+      "brief": "Brief summary",
+      "detailed": "Detailed summary with citations",
+      "keyPoints": "Extract key points only",
+      "methodology": "Summarize methodology section"
+    }
   },
   "flashcards": {
     "topicPlaceholder": "Topic, e.g. \"Methodology\"",

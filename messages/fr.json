@@ -25,8 +25,20 @@
   },
   "summarize": {
     "from": "à",
+    "fromPageLabel": "De la Page",
+    "toPageLabel": "À la Page",
     "summarizeButton": "Résumer",
-    "summarizing": "Résumé en cours…"
+    "summarizing": "Résumé en cours…",
+    "quickActions": "Actions Rapides",
+    "customPromptLabel": "Instructions Personnalisées (Optionnel)",
+    "customPromptPlaceholder": "ex., \"Résumez le chapitre 2 en se concentrant sur la méthodologie\" ou \"Aperçu bref des conclusions\"",
+    "result": "Résumé",
+    "suggestions": {
+      "brief": "Résumé bref",
+      "detailed": "Résumé détaillé avec citations",
+      "keyPoints": "Extraire uniquement les points clés",
+      "methodology": "Résumer la section méthodologie"
+    }
   },
   "flashcards": {
     "topicPlaceholder": "Sujet, ex. \"Méthodologie\"",

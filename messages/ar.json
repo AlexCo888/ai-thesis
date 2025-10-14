@@ -25,8 +25,20 @@
   },
   "summarize": {
     "from": "إلى",
+    "fromPageLabel": "من الصفحة",
+    "toPageLabel": "إلى الصفحة",
     "summarizeButton": "لخص",
-    "summarizing": "جارٍ التلخيص…"
+    "summarizing": "جارٍ التلخيص…",
+    "quickActions": "إجراءات سريعة",
+    "customPromptLabel": "تعليمات مخصصة (اختياري)",
+    "customPromptPlaceholder": "مثال: \"لخص الفصل 2 مع التركيز على المنهجية\" أو \"نظرة عامة موجزة على الاستنتاجات\"",
+    "result": "الملخص",
+    "suggestions": {
+      "brief": "ملخص موجز",
+      "detailed": "ملخص مفصل مع الاستشهادات",
+      "keyPoints": "استخراج النقاط الرئيسية فقط",
+      "methodology": "تلخيص قسم المنهجية"
+    }
   },
   "flashcards": {
     "topicPlaceholder": "الموضوع، مثال: \"المنهجية\"",

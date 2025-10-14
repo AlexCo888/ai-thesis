@@ -4,6 +4,14 @@ import { Tabs } from '@/components/ui/tabs';
 import RagChat from '@/components/RagChat';
 import PdfPane from '@/components/PdfPane';
 import FlashcardWithChat from '@/components/FlashcardWithChat';
+import { Suggestions, Suggestion } from '@/components/ai-elements/suggestion';
+import { 
+  PromptInput, 
+  PromptInputTextarea, 
+  PromptInputToolbar,
+  PromptInputSubmit 
+} from '@/components/ai-elements/prompt-input';
+import { Response } from '@/components/ai-elements/response';
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 
@@ -66,17 +74,25 @@ function ExploreTab() {
 function SummarizeTab() {
   const t = useTranslations('summarize');
   const locale = useLocale();
-  const [fromPage, setFromPage] = useState<number>(1);
-  const [toPage, setToPage] = useState<number>(1);
+  const [fromPage, setFromPage] = useState<string>('1');
+  const [toPage, setToPage] = useState<string>('1');
+  const [customPrompt, setCustomPrompt] = useState<string>('');
   const [text, setText] = useState<string>('');
   const [loading, setLoading] = useState(false);
 
-  const run = async () => {
+  const run = async (promptOverride?: string) => {
+    const from = parseInt(fromPage) || 1;
+    const to = parseInt(toPage) || 1;
+    
     setLoading(true);
     setText('');
     const res = await fetch(`/api/rag/summarize?locale=${locale}`, {
       method: 'POST',
-      body: JSON.stringify({ fromPage, toPage }),
+      body: JSON.stringify({ 
+        fromPage: from, 
+        toPage: to,
+        customPrompt: promptOverride || customPrompt 
+      }),
       headers: { 'content-type': 'application/json' }
     });
     // stream the text
@@ -90,29 +106,121 @@ function SummarizeTab() {
     setLoading(false);
   };
 
+  const handleSuggestion = (suggestion: string) => {
+    setCustomPrompt(suggestion);
+    run(suggestion);
+  };
+
+  const handleSubmit = async (message: { text?: string }, e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const prompt = message.text || customPrompt;
+    setCustomPrompt(prompt);
+    await run(prompt);
+  };
+
   return (
-    <div className="p-3 space-y-3">
-      <div className="flex gap-2 items-center">
-        <input
-          type="number"
-          min={1}
-          value={fromPage}
-          onChange={(e) => setFromPage(parseInt(e.target.value || '1', 10))}
-          className="w-24 border rounded px-2 py-2"
-        />
-        <span>{t('from')}</span>
-        <input
-          type="number"
-          min={fromPage}
-          value={toPage}
-          onChange={(e) => setToPage(parseInt(e.target.value || '1', 10))}
-          className="w-24 border rounded px-2 py-2"
-        />
-        <button onClick={run} className="px-3 py-2 rounded bg-black text-white" disabled={loading}>
+    <div className="p-3 lg:p-4 space-y-4">
+      {/* Suggestions */}
+      <div className="space-y-2">
+        <h3 className="text-sm font-medium text-muted-foreground">{t('quickActions')}</h3>
+        <Suggestions>
+          <Suggestion 
+            suggestion={t('suggestions.brief')} 
+            onClick={handleSuggestion}
+          />
+          <Suggestion 
+            suggestion={t('suggestions.detailed')} 
+            onClick={handleSuggestion}
+          />
+          <Suggestion 
+            suggestion={t('suggestions.keyPoints')} 
+            onClick={handleSuggestion}
+          />
+          <Suggestion 
+            suggestion={t('suggestions.methodology')} 
+            onClick={handleSuggestion}
+          />
+        </Suggestions>
+      </div>
+
+      {/* Page Range Selection */}
+      <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-end">
+        <div className="flex-1 space-y-1.5">
+          <label htmlFor="fromPage" className="text-sm font-medium">
+            {t('fromPageLabel')}
+          </label>
+          <input
+            id="fromPage"
+            type="number"
+            min={1}
+            value={fromPage}
+            onChange={(e) => setFromPage(e.target.value)}
+            className="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+            placeholder="1"
+          />
+        </div>
+        <div className="flex-1 space-y-1.5">
+          <label htmlFor="toPage" className="text-sm font-medium">
+            {t('toPageLabel')}
+          </label>
+          <input
+            id="toPage"
+            type="number"
+            min={parseInt(fromPage) || 1}
+            value={toPage}
+            onChange={(e) => setToPage(e.target.value)}
+            className="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+            placeholder="1"
+          />
+        </div>
+        <button 
+          onClick={() => run()} 
+          className="px-4 py-2 rounded-md bg-black text-white hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium" 
+          disabled={loading}
+        >
           {loading ? t('summarizing') : t('summarizeButton')}
         </button>
       </div>
-      <pre className="whitespace-pre-wrap text-sm">{text}</pre>
+
+      {/* Custom Prompt Input */}
+      <div className="space-y-2">
+        <label className="text-sm font-medium">{t('customPromptLabel')}</label>
+        <PromptInput onSubmit={handleSubmit}>
+          <PromptInputTextarea
+            value={customPrompt}
+            onChange={(e) => setCustomPrompt(e.currentTarget.value)}
+            placeholder={t('customPromptPlaceholder')}
+            disabled={loading}
+            rows={2}
+            className="text-sm"
+          />
+          <PromptInputToolbar>
+            <PromptInputSubmit 
+              disabled={!customPrompt.trim() || loading}
+              status={loading ? 'submitted' : 'ready'}
+            />
+          </PromptInputToolbar>
+        </PromptInput>
+      </div>
+
+      {/* Result Display */}
+      {text && (
+        <div className="rounded-lg border bg-muted/30 p-4 lg:p-6">
+          <h3 className="text-sm font-semibold mb-4">{t('result')}</h3>
+          <div className="prose prose-sm dark:prose-invert max-w-none">
+            <Response>{text}</Response>
+          </div>
+        </div>
+      )}
+      
+      {loading && !text && (
+        <div className="rounded-lg border bg-muted/30 p-8 flex items-center justify-center">
+          <div className="flex flex-col items-center gap-2 text-muted-foreground">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-current"></div>
+            <p className="text-sm">{t('summarizing')}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -25,8 +25,20 @@
   },
   "summarize": {
     "from": "から",
+    "fromPageLabel": "開始ページ",
+    "toPageLabel": "終了ページ",
     "summarizeButton": "要約する",
-    "summarizing": "要約中…"
+    "summarizing": "要約中…",
+    "quickActions": "クイックアクション",
+    "customPromptLabel": "カスタム指示（オプション）",
+    "customPromptPlaceholder": "例：\"方法論に焦点を当てて第2章を要約\"または\"結論の簡単な概要\"",
+    "result": "要約",
+    "suggestions": {
+      "brief": "簡潔な要約",
+      "detailed": "引用付きの詳細な要約",
+      "keyPoints": "要点のみを抽出",
+      "methodology": "方法論セクションを要約"
+    }
   },
   "flashcards": {
     "topicPlaceholder": "トピック、例：「方法論」",

@@ -19,7 +19,7 @@ const localeInstructions: Record<string, string> = {
 };
 
 export async function POST(req: Request) {
-  const { fromPage, toPage } = await req.json();
+  const { fromPage, toPage, customPrompt } = await req.json();
   
   // Get locale from URL params
   const url = new URL(req.url);
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     SELECT content, page FROM rag_chunks
     WHERE page BETWEEN ${fp} AND ${tp}
     ORDER BY page ASC, tokens DESC
-    LIMIT 100;
+    LIMIT 800;
   `;
   const context = rows
     .map((r) => `Page ${r.page}\n${r.content}`)
@@ -42,9 +42,45 @@ export async function POST(req: Request) {
     ? ` ${localeInstructions[locale]}`
     : '';
 
+  // Build comprehensive system message based on custom prompt or default
+  let systemMessage = '';
+  
+  if (customPrompt) {
+    // Enhanced prompt for custom instructions
+    const detailLevel = customPrompt.toLowerCase().includes('detailed') || customPrompt.toLowerCase().includes('detallado')
+      ? 'IMPORTANT: Provide a comprehensive, in-depth analysis with multiple sections. Aim for at least 500-800 words. Include extensive details, explanations, and context.'
+      : customPrompt.toLowerCase().includes('brief') || customPrompt.toLowerCase().includes('breve')
+      ? 'IMPORTANT: Keep the summary concise and focused on the most critical points only.'
+      : 'Provide a thorough analysis with good depth.';
+    
+    systemMessage = `${customPrompt}
+
+${detailLevel}
+
+Guidelines:
+- Use the thesis content provided below to generate your response
+- Always include page citations in the format (p. X)
+- Structure your response with clear headings and sections when appropriate
+- Use markdown formatting (headings, bullet points, bold text) for better readability
+- For detailed summaries: cover methodology, findings, implications, and key concepts thoroughly
+- For key points: use bullet lists with brief explanations
+${localeInstruction}`;
+  } else {
+    // Default comprehensive summary
+    systemMessage = `Summarize these pages of the thesis for a researcher.
+
+Guidelines:
+- Include key findings, research methods, definitions, and important caveats
+- Structure with clear sections using markdown headings (##, ###)
+- Use bullet points for lists
+- Always include page citations like (p. X)
+- Provide sufficient detail and context for academic understanding
+${localeInstruction}`;
+  }
+
   const result = streamText({
     model: google(process.env.GENERATION_MODEL || 'gemini-2.5-flash-preview-09-2025'),
-    system: `Summarize these pages of the thesis for a researcher. Include key findings, methods, definitions, and caveats. Use bullet points and keep citations like (p. X).${localeInstruction}`,
+    system: systemMessage,
     prompt: context
   });
 

@@ -25,8 +25,20 @@
   },
   "summarize": {
     "from": "bis",
+    "fromPageLabel": "Von Seite",
+    "toPageLabel": "Bis Seite",
     "summarizeButton": "Zusammenfassen",
-    "summarizing": "Zusammenfassung läuft…"
+    "summarizing": "Zusammenfassung läuft…",
+    "quickActions": "Schnellaktionen",
+    "customPromptLabel": "Benutzerdefinierte Anweisungen (Optional)",
+    "customPromptPlaceholder": "z.B., \"Fassen Sie Kapitel 2 mit Fokus auf die Methodik zusammen\" oder \"Kurze Übersicht der Schlussfolgerungen\"",
+    "result": "Zusammenfassung",
+    "suggestions": {
+      "brief": "Kurze Zusammenfassung",
+      "detailed": "Detaillierte Zusammenfassung mit Zitaten",
+      "keyPoints": "Nur Hauptpunkte extrahieren",
+      "methodology": "Methodik-Abschnitt zusammenfassen"
+    }
   },
   "flashcards": {
     "topicPlaceholder": "Thema, z.B. \"Methodik\"",

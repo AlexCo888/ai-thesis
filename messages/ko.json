@@ -25,8 +25,20 @@
   },
   "summarize": {
     "from": "에서",
+    "fromPageLabel": "시작 페이지",
+    "toPageLabel": "끝 페이지",
     "summarizeButton": "요약하기",
-    "summarizing": "요약 중…"
+    "summarizing": "요약 중…",
+    "quickActions": "빠른 작업",
+    "customPromptLabel": "사용자 정의 지침 (선택사항)",
+    "customPromptPlaceholder": "예: \"방법론에 초점을 맞춰 2장 요약\" 또는 \"결론의 간략한 개요\"",
+    "result": "요약",
+    "suggestions": {
+      "brief": "간단한 요약",
+      "detailed": "인용이 포함된 상세 요약",
+      "keyPoints": "핵심 포인트만 추출",
+      "methodology": "방법론 섹션 요약"
+    }
   },
   "flashcards": {
     "topicPlaceholder": "주제, 예: \"방법론\"",
