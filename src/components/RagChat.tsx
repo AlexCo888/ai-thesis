@@ -8,8 +8,9 @@ import {
 } from '@/components/ai-elements/conversation';
 import { Message as Msg, MessageContent } from '@/components/ai-elements/message';
 import { PromptInput, PromptInputTextarea, PromptInputSubmit } from '@/components/ai-elements/prompt-input';
-import { Response } from '@/components/ai-elements/response';
 import { InlineCitation } from '@/components/ai-elements/inline-citation';
+import { Loader } from '@/components/ai-elements/loader';
+import CitationText from '@/components/CitationText';
 import { MessageSquare } from 'lucide-react';
 
 import { useChat } from '@ai-sdk/react';
@@ -62,10 +63,21 @@ export default function RagChat({
     setInput('');
   };
 
+  const isLoading = status === 'streaming' || status === 'submitted';
+
   return (
     <div className="flex flex-col h-full">
-      <Conversation className="relative w-full h-[65vh]">
+      <Conversation className="relative w-full flex-1 min-h-0">
         <ConversationContent>
+          {/* Loading indicator for first message */}
+          {isLoading && messages.length === 0 && (
+            <div className="flex items-center justify-center h-full">
+              <div className="flex flex-col items-center gap-3 text-muted-foreground">
+                <Loader size={32} />
+                <p className="text-sm">AI is analyzing the thesis...</p>
+              </div>
+            </div>
+          )}
           {messages.length === 0 ? (
             <ConversationEmptyState
               icon={<MessageSquare className="size-12" />}
@@ -81,9 +93,11 @@ export default function RagChat({
                       case 'text':
                         return (
                           <InlineCitation key={`${message.id}-${i}`}>
-                            <Response>
-                              {part.text}
-                            </Response>
+                            <CitationText
+                              text={part.text}
+                              sources={sources}
+                              onPageJump={onJumpToPage}
+                            />
                           </InlineCitation>
                         );
                       default:
@@ -101,32 +115,34 @@ export default function RagChat({
       <PromptInput onSubmit={handleSubmit} className="mt-3 w-full relative">
         <PromptInputTextarea
           value={input}
-          placeholder="Ask about the thesis…"
+          placeholder={isLoading ? 'Waiting for AI response...' : 'Ask about the thesis…'}
           onChange={(e) => setInput(e.currentTarget.value)}
           className="pr-12"
+          disabled={isLoading}
         />
         <PromptInputSubmit
-          status={status === 'streaming' ? 'streaming' : 'ready'}
-          disabled={!input.trim()}
+          status={status === 'streaming' ? 'streaming' : status === 'submitted' ? 'submitted' : 'ready'}
+          disabled={!input.trim() || isLoading}
           className="absolute bottom-1 right-1"
         />
       </PromptInput>
 
       {/* Sources panel (click to jump page in the PDF pane) */}
       {sources?.length ? (
-        <div className="mt-3">
+        <div className="mt-2 border-t border-border pt-2">
           <SourcesPanel
             items={sources}
           />
-          <div className="mt-2 flex gap-2 flex-wrap">
+          <div className="mt-1.5 flex gap-1.5 overflow-x-auto pb-1.5 scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent">
             {sources.map((s) => (
               <button
                 key={s.id}
-                className="text-xs underline"
+                className="text-[11px] underline hover:text-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap flex-shrink-0 py-0.5"
                 onClick={() => onJumpToPage?.(s.page)}
                 title={`Jump to page ${s.page}`}
+                disabled={isLoading}
               >
-                Go to [#{s.n}] page {s.page}
+                [#{s.n}] pg.{s.page}
               </button>
             ))}
           </div>

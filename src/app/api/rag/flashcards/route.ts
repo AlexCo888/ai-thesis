@@ -18,7 +18,8 @@ ${sources
 
   const { text } = await generateText({
     model: google(process.env.GENERATION_MODEL || 'gemini-2.5-flash-preview-09-2025'),
-    prompt
+    prompt,
+    temperature: 0.3
   });
 
   // attempt to parse JSON; fallback to empty
@@ -30,11 +31,33 @@ ${sources
   }
 
   let cards: Flashcard[] = [];
+  let parseError: string | undefined;
+  
   try {
-    const arr = JSON.parse(text);
-    if (Array.isArray(arr)) cards = arr.slice(0, n);
-  } catch {
-    // Ignore parse errors
+    // Try to extract JSON from markdown code blocks if present
+    let jsonText = text.trim();
+    
+    // Remove markdown code block markers if present
+    const codeBlockMatch = jsonText.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
+    if (codeBlockMatch) {
+      jsonText = codeBlockMatch[1].trim();
+    }
+    
+    const arr = JSON.parse(jsonText);
+    if (Array.isArray(arr)) {
+      cards = arr.slice(0, n);
+    } else {
+      parseError = 'Response is not an array';
+    }
+  } catch (err) {
+    parseError = err instanceof Error ? err.message : 'JSON parse failed';
+    console.error('Flashcard parse error:', parseError);
+    console.error('Raw text:', text);
   }
-  return Response.json({ cards, used: sources.map((s, i) => ({ n: i + 1, id: s.id, page: s.page })) });
+  
+  return Response.json({ 
+    cards, 
+    used: sources.map((s, i) => ({ n: i + 1, id: s.id, page: s.page })),
+    ...(parseError && { error: parseError, rawResponse: text.substring(0, 500) })
+  });
 }

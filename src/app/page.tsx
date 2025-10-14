@@ -3,6 +3,7 @@
 import { Tabs } from '@/components/ui/tabs';
 import RagChat from '@/components/RagChat';
 import PdfPane from '@/components/PdfPane';
+import FlashcardWithChat from '@/components/FlashcardWithChat';
 import { useState } from 'react';
 
 interface SearchResult {
@@ -112,13 +113,15 @@ function SummarizeTab() {
   );
 }
 
-function FlashcardsTab() {
+function FlashcardsTab({ onPageJump }: { onPageJump?: (page: number) => void }) {
   const [topic, setTopic] = useState('');
   const [cards, setCards] = useState<Flashcard[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string>('');
 
   const run = async () => {
     setLoading(true);
+    setError('');
     const res = await fetch('/api/rag/flashcards', {
       method: 'POST',
       body: JSON.stringify({ topic, n: 12 }),
@@ -126,6 +129,10 @@ function FlashcardsTab() {
     });
     const data = await res.json();
     setCards(data.cards || []);
+    if (data.error) {
+      setError(`Error: ${data.error}. Raw response: ${data.rawResponse || 'N/A'}`);
+      console.error('Flashcard generation error:', data);
+    }
     setLoading(false);
   };
 
@@ -142,26 +149,24 @@ function FlashcardsTab() {
           {loading ? 'Generating…' : 'Generate'}
         </button>
       </div>
-      <div className="grid md:grid-cols-2 gap-3">
+      {error && (
+        <div className="border border-red-500 bg-red-50 rounded p-3 text-sm text-red-800">
+          {error}
+        </div>
+      )}
+      {!loading && cards.length === 0 && !error && (
+        <div className="text-sm text-muted-foreground text-center py-8">
+          Enter a topic and click Generate to create flashcards
+        </div>
+      )}
+      <div className="space-y-3">
         {cards.map((c, idx) => (
-          <details key={idx} className="border rounded p-3">
-            <summary className="cursor-pointer text-sm font-medium">
-              Q{idx + 1}. {c.q || '—'}
-            </summary>
-            <div className="mt-2 text-sm">
-              <div className="font-semibold">Answer</div>
-              <div className="mt-1">{c.a || '—'}</div>
-              {c.page ? (
-                <a
-                  className="underline text-xs mt-2 inline-block"
-                  href={`/thesis.pdf#page=${c.page}`}
-                  target="_blank"
-                >
-                  Page {c.page}
-                </a>
-              ) : null}
-            </div>
-          </details>
+          <FlashcardWithChat
+            key={`${c.source}-${idx}`}
+            flashcard={c}
+            index={idx}
+            onPageJump={onPageJump}
+          />
         ))}
       </div>
     </div>
@@ -173,24 +178,35 @@ export default function Page() {
   const [pdfPage, setPdfPage] = useState<number | undefined>(1);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-[1fr_420px] gap-4 p-4">
-      {/* Left: App */}
-      <div className="min-h-[85vh] border rounded-md p-3">
-        <Tabs
-          tabs={[
-            { label: 'Ask', content: <RagChat onJumpToPage={(p) => setPdfPage(p)} /> },
-            { label: 'Explore', content: <ExploreTab /> },
-            { label: 'Summarize', content: <SummarizeTab /> },
-            { label: 'Flashcards', content: <FlashcardsTab /> }
-          ]}
-        />
-      </div>
+    <div className="h-screen flex flex-col">
+      <div className="flex-1 container mx-auto max-w-[1800px] px-4 py-4 overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_500px] xl:grid-cols-[1fr_600px] 2xl:grid-cols-[1fr_700px] gap-4 h-full">
+          {/* Left: App */}
+          <div className="flex flex-col border rounded-lg shadow-sm p-4 bg-white dark:bg-gray-950 overflow-hidden">
+            <Tabs
+              tabs={[
+                { label: 'Ask', content: <RagChat onJumpToPage={(p) => setPdfPage(p)} /> },
+                { label: 'Explore', content: <ExploreTab /> },
+                { label: 'Summarize', content: <SummarizeTab /> },
+                { label: 'Flashcards', content: <FlashcardsTab onPageJump={(p) => setPdfPage(p)} /> }
+              ]}
+            />
+          </div>
 
-      {/* Right: PDF pane */}
-      <div className="min-h-[85vh] border rounded-md p-2">
-        <div className="text-sm font-medium px-1 pb-2">Thesis Viewer</div>
-        <div className="h-[calc(85vh-2.5rem)]">
-          <PdfPane page={pdfPage} />
+          {/* Right: PDF pane - Full height optimized */}
+          <div className="flex flex-col border rounded-lg shadow-sm bg-white dark:bg-gray-950 overflow-hidden">
+            <div className="flex-shrink-0 px-4 pt-4 pb-3 border-b flex items-center justify-between">
+              <span className="text-sm font-semibold">Thesis Viewer</span>
+              {pdfPage && (
+                <span className="text-xs text-muted-foreground bg-gray-100 dark:bg-gray-800 px-2.5 py-1 rounded-full">
+                  Page {pdfPage}
+                </span>
+              )}
+            </div>
+            <div className="flex-1 p-4 overflow-hidden">
+              <PdfPane page={pdfPage} />
+            </div>
+          </div>
         </div>
       </div>
     </div>

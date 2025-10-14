@@ -7,6 +7,18 @@ export const maxDuration = 30;
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
 
+  // Check for flashcard context in headers
+  const flashcardContextHeader = req.headers.get('x-flashcard-context');
+  let flashcardContext: { question: string; answer: string; page: number } | null = null;
+  
+  if (flashcardContextHeader) {
+    try {
+      flashcardContext = JSON.parse(decodeURIComponent(flashcardContextHeader));
+    } catch {
+      // Ignore parse errors
+    }
+  }
+
   // Pull the latest user message for retrieval
   const last = [...messages].reverse().find((m) => m.role === 'user');
   const userText =
@@ -18,7 +30,8 @@ export async function POST(req: Request) {
   const sources = userText ? await searchSimilar(userText, 6) : [];
   const context = buildContext(sources);
 
-  const system = `
+  // Build system prompt with optional flashcard context
+  let systemPrompt = `
 You are a precise thesis assistant using a RAG knowledge base.
 Use ONLY the provided CONTEXT to answer.
 Cite using [#n] markers that correspond to the numbered sources below.
@@ -26,8 +39,19 @@ Cite using [#n] markers that correspond to the numbered sources below.
 CONTEXT:
 ${context}
 
-When relevant, reference specific page numbers. If you are unsure, say so.
-  `.trim();
+When relevant, reference specific page numbers. If you are unsure, say so.`;
+
+  // Add flashcard context if available (only for first message)
+  if (flashcardContext && messages.length === 1) {
+    systemPrompt += `\n\nIMPORTANT CONTEXT: The user is studying a flashcard with:
+- Question: "${flashcardContext.question}"
+- Answer: "${flashcardContext.answer}"
+- Source Page: ${flashcardContext.page}
+
+Keep this context in mind when answering their questions, but do NOT repeat this context in your response. Answer their question directly and naturally.`;
+  }
+
+  const system = systemPrompt.trim();
 
   const result = streamText({
     model: google(process.env.GENERATION_MODEL || 'gemini-2.5-flash-preview-09-2025'),
