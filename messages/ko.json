@@ -105,5 +105,36 @@
   },
   "citation": {
     "jumpToPage": "{page}페이지로 이동"
+  },
+  "errors": {
+    "retry": "다시 시도",
+    "technicalDetails": "기술 세부 정보",
+    "quotaExceeded": {
+      "title": "API 할당량 초과",
+      "message": "AI 서비스가 사용 한도에 도달했습니다. 잠시 기다린 후 다시 시도하거나 나중에 다시 확인해 주세요.",
+      "retryIn": "{seconds}초 후 다시 시도",
+      "retryLater": "나중에 다시 시도",
+      "learnMore": "자세히 알아보기"
+    },
+    "authentication": {
+      "title": "인증 오류",
+      "message": "액세스 확인 중 문제가 발생했습니다. 페이지를 새로 고침하거나 문제가 지속되면 지원팀에 문의하세요.",
+      "action": "페이지 새로 고침"
+    },
+    "network": {
+      "title": "연결 오류",
+      "message": "AI 서비스에 연결할 수 없습니다. 인터넷 연결을 확인하고 다시 시도하세요.",
+      "action": "다시 시도"
+    },
+    "server": {
+      "title": "서버 오류",
+      "message": "요청을 처리하는 동안 서버에서 오류가 발생했습니다. 잠시 후 다시 시도하세요.",
+      "action": "다시 시도"
+    },
+    "generic": {
+      "title": "문제가 발생했습니다",
+      "message": "예기치 않은 오류가 발생했습니다. 다시 시도하거나 문제가 지속되면 지원팀에 문의하세요.",
+      "action": "다시 시도"
+    }
   }
 }

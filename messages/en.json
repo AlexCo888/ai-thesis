@@ -105,5 +105,36 @@
   },
   "citation": {
     "jumpToPage": "Jump to page {page}"
+  },
+  "errors": {
+    "retry": "Try Again",
+    "technicalDetails": "Technical Details",
+    "quotaExceeded": {
+      "title": "API Quota Exceeded",
+      "message": "The AI service has reached its usage limit. Please wait a few moments and try again, or check back later.",
+      "retryIn": "Retry in {seconds}s",
+      "retryLater": "Try Again Later",
+      "learnMore": "Learn More"
+    },
+    "authentication": {
+      "title": "Authentication Error",
+      "message": "There was a problem verifying your access. Please refresh the page or contact support if the issue persists.",
+      "action": "Refresh Page"
+    },
+    "network": {
+      "title": "Connection Error",
+      "message": "Unable to connect to the AI service. Please check your internet connection and try again.",
+      "action": "Retry"
+    },
+    "server": {
+      "title": "Server Error",
+      "message": "The server encountered an error while processing your request. Please try again in a few moments.",
+      "action": "Try Again"
+    },
+    "generic": {
+      "title": "Something Went Wrong",
+      "message": "An unexpected error occurred. Please try again or contact support if the problem continues.",
+      "action": "Try Again"
+    }
   }
 }

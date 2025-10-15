@@ -105,6 +105,37 @@
   },
   "citation": {
     "jumpToPage": "Aller à la page {page}"
+  },
+  "errors": {
+    "retry": "Réessayer",
+    "technicalDetails": "Détails Techniques",
+    "quotaExceeded": {
+      "title": "Quota API Dépassé",
+      "message": "Le service d'IA a atteint sa limite d'utilisation. Veuillez patienter quelques instants et réessayer, ou revenir plus tard.",
+      "retryIn": "Réessayer dans {seconds}s",
+      "retryLater": "Réessayer Plus Tard",
+      "learnMore": "En Savoir Plus"
+    },
+    "authentication": {
+      "title": "Erreur d'Authentification",
+      "message": "Un problème est survenu lors de la vérification de votre accès. Veuillez actualiser la page ou contacter le support si le problème persiste.",
+      "action": "Actualiser la Page"
+    },
+    "network": {
+      "title": "Erreur de Connexion",
+      "message": "Impossible de se connecter au service d'IA. Veuillez vérifier votre connexion Internet et réessayer.",
+      "action": "Réessayer"
+    },
+    "server": {
+      "title": "Erreur Serveur",
+      "message": "Le serveur a rencontré une erreur lors du traitement de votre demande. Veuillez réessayer dans quelques instants.",
+      "action": "Réessayer"
+    },
+    "generic": {
+      "title": "Une Erreur s'est Produite",
+      "message": "Une erreur inattendue s'est produite. Veuillez réessayer ou contacter le support si le problème persiste.",
+      "action": "Réessayer"
+    }
   }
 }
 

@@ -16,6 +16,7 @@ import { InlineCitation } from '@/components/ai-elements/inline-citation';
 import { Suggestions, Suggestion } from '@/components/ai-elements/suggestion';
 import { Loader } from '@/components/ai-elements/loader';
 import CitationText from '@/components/CitationText';
+import ErrorAlert from '@/components/ErrorAlert';
 import { MessageSquare, ChevronDown, ChevronUp } from 'lucide-react';
 import { useChat } from '@ai-sdk/react';
 import { DefaultChatTransport } from 'ai';
@@ -56,7 +57,7 @@ export default function FlashcardWithChat({
   const [sources, setSources] = useState<RagSourceHeader[]>([]);
   const [isFirstMessage, setIsFirstMessage] = useState(true);
 
-  const { messages, sendMessage, status } = useChat({
+  const { messages, sendMessage, status, error } = useChat({
     id: `flashcard-${flashcard.source}-${index}`, // Unique ID per flashcard
     transport: new DefaultChatTransport({
       api: `/api/chat?locale=${locale}`,
@@ -119,6 +120,22 @@ export default function FlashcardWithChat({
   };
 
   const isLoading = status === 'streaming' || status === 'submitted';
+
+  const handleRetry = () => {
+    if (messages.length > 0) {
+      // Resend the last user message
+      const lastUserMessage = [...messages].reverse().find(m => m.role === 'user');
+      if (lastUserMessage) {
+        const text = lastUserMessage.parts
+          .filter(p => p.type === 'text')
+          .map(p => p.type === 'text' ? p.text : '')
+          .join('');
+        if (text) {
+          sendMessage({ text });
+        }
+      }
+    }
+  };
 
   const suggestions = [
     t('suggestions.explain'),
@@ -195,6 +212,10 @@ export default function FlashcardWithChat({
 
             {isChatExpanded && (
               <div className="space-y-3">
+                {/* Error Alert */}
+                {error && (
+                  <ErrorAlert error={error} onRetry={handleRetry} className="text-xs" />
+                )}
                 {/* Suggestions - Only show when no messages */}
                 {messages.length === 0 && !isLoading && (
                   <div>

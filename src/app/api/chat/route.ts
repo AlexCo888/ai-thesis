@@ -19,34 +19,35 @@ const localeInstructions: Record<string, string> = {
 };
 
 export async function POST(req: Request) {
-  const { messages }: { messages: UIMessage[] } = await req.json();
+  try {
+    const { messages }: { messages: UIMessage[] } = await req.json();
 
-  // Get locale from URL params
-  const url = new URL(req.url);
-  const locale = url.searchParams.get('locale') || 'en';
+    // Get locale from URL params
+    const url = new URL(req.url);
+    const locale = url.searchParams.get('locale') || 'en';
 
-  // Check for flashcard context in headers
-  const flashcardContextHeader = req.headers.get('x-flashcard-context');
-  let flashcardContext: { question: string; answer: string; page: number } | null = null;
-  
-  if (flashcardContextHeader) {
-    try {
-      flashcardContext = JSON.parse(decodeURIComponent(flashcardContextHeader));
-    } catch {
-      // Ignore parse errors
+    // Check for flashcard context in headers
+    const flashcardContextHeader = req.headers.get('x-flashcard-context');
+    let flashcardContext: { question: string; answer: string; page: number } | null = null;
+    
+    if (flashcardContextHeader) {
+      try {
+        flashcardContext = JSON.parse(decodeURIComponent(flashcardContextHeader));
+      } catch {
+        // Ignore parse errors
+      }
     }
-  }
 
-  // Pull the latest user message for retrieval
-  const last = [...messages].reverse().find((m) => m.role === 'user');
-  const userText =
-    last?.parts
-      ?.map((p) => (p.type === 'text' ? p.text : ''))
-      .join(' ')
-      .trim() ?? '';
+    // Pull the latest user message for retrieval
+    const last = [...messages].reverse().find((m) => m.role === 'user');
+    const userText =
+      last?.parts
+        ?.map((p) => (p.type === 'text' ? p.text : ''))
+        .join(' ')
+        .trim() ?? '';
 
-  const sources = userText ? await searchSimilar(userText, 6) : [];
-  const context = buildContext(sources);
+    const sources = userText ? await searchSimilar(userText, 6) : [];
+    const context = buildContext(sources);
 
   // Build system prompt with locale instruction and optional flashcard context
   const localeInstruction = locale !== 'en' && localeInstructions[locale] 
@@ -94,21 +95,55 @@ Keep this context in mind when answering their questions, but do NOT repeat this
     messages: convertToModelMessages(messages)
   });
 
-  // Return a UI stream for useChat (AI Elements example expects this)
-  return result.toUIMessageStreamResponse({
-    // include sources in headers so client can fetch them easily
-    headers: {
-      'x-rag-sources': encodeURIComponent(
-        JSON.stringify(
-          sources.map((s, i) => ({
-            n: i + 1,
-            id: s.id,
-            page: s.page,
-            score: s.score,
-            href: `/thesis.pdf#page=${s.page}`
-          }))
+    // Return a UI stream for useChat (AI Elements example expects this)
+    return result.toUIMessageStreamResponse({
+      // include sources in headers so client can fetch them easily
+      headers: {
+        'x-rag-sources': encodeURIComponent(
+          JSON.stringify(
+            sources.map((s, i) => ({
+              n: i + 1,
+              id: s.id,
+              page: s.page,
+              score: s.score,
+              href: `/thesis.pdf#page=${s.page}`
+            }))
+          )
         )
-      )
-    }
-  });
+      }
+    });
+  } catch (error) {
+    console.error('[Chat API Error]:', error);
+    
+    // Return detailed error information to the client
+    const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
+    const statusCode = getErrorStatusCode(error);
+    
+    return new Response(
+      JSON.stringify({
+        error: errorMessage,
+        details: error instanceof Error ? error.stack : undefined
+      }),
+      {
+        status: statusCode,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  }
+}
+
+// Helper function to determine HTTP status code from error
+function getErrorStatusCode(error: unknown): number {
+  if (!(error instanceof Error)) return 500;
+  
+  const message = error.message.toLowerCase();
+  
+  if (message.includes('quota') || message.includes('rate limit')) return 429;
+  if (message.includes('unauthorized') || message.includes('auth')) return 401;
+  if (message.includes('not found')) return 404;
+  if (message.includes('bad request')) return 400;
+  
+  return 500;
 }
