@@ -10,8 +10,9 @@ import { Message as Msg, MessageContent } from '@/components/ai-elements/message
 import { PromptInput, PromptInputTextarea, PromptInputSubmit } from '@/components/ai-elements/prompt-input';
 import { InlineCitation } from '@/components/ai-elements/inline-citation';
 import { Loader } from '@/components/ai-elements/loader';
-import CitationText from '@/components/CitationText';
+import CitationText from './CitationText';
 import { MessageSquare } from 'lucide-react';
+import ErrorAlert from '@/components/ErrorAlert';
 
 import { useChat } from '@ai-sdk/react';
 import { DefaultChatTransport } from 'ai';
@@ -37,7 +38,7 @@ export default function RagChat({
   const [input, setInput] = useState('');
   const [sources, setSources] = useState<RagSourceHeader[]>([]);
 
-  const { messages, sendMessage, status } = useChat({
+  const { messages, sendMessage, status, error } = useChat({
     transport: new DefaultChatTransport({
       api: `/api/chat?locale=${locale}`,
       fetch: async (url, options) => {
@@ -68,8 +69,31 @@ export default function RagChat({
 
   const isLoading = status === 'streaming' || status === 'submitted';
 
+  const handleRetry = () => {
+    if (messages.length > 0) {
+      // Resend the last user message
+      const lastUserMessage = [...messages].reverse().find(m => m.role === 'user');
+      if (lastUserMessage) {
+        const text = lastUserMessage.parts
+          .filter(p => p.type === 'text')
+          .map(p => p.type === 'text' ? p.text : '')
+          .join('');
+        if (text) {
+          sendMessage({ text });
+        }
+      }
+    }
+  };
+
   return (
     <div className="flex flex-col h-full">
+      {/* Error Alert */}
+      {error && (
+        <div className="mb-3">
+          <ErrorAlert error={error} onRetry={handleRetry} />
+        </div>
+      )}
+
       <Conversation className="relative w-full flex-1 min-h-0">
         <ConversationContent>
           {/* Loading indicator for first message */}

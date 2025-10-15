@@ -105,5 +105,36 @@
   },
   "citation": {
     "jumpToPage": "Ir para a página {page}"
+  },
+  "errors": {
+    "retry": "Tentar Novamente",
+    "technicalDetails": "Detalhes Técnicos",
+    "quotaExceeded": {
+      "title": "Cota de API Excedida",
+      "message": "O serviço de IA atingiu seu limite de uso. Por favor, aguarde alguns momentos e tente novamente, ou volte mais tarde.",
+      "retryIn": "Tentar novamente em {seconds}s",
+      "retryLater": "Tentar Mais Tarde",
+      "learnMore": "Saiba Mais"
+    },
+    "authentication": {
+      "title": "Erro de Autenticação",
+      "message": "Houve um problema ao verificar seu acesso. Por favor, atualize a página ou entre em contato com o suporte se o problema persistir.",
+      "action": "Atualizar Página"
+    },
+    "network": {
+      "title": "Erro de Conexão",
+      "message": "Não foi possível conectar ao serviço de IA. Por favor, verifique sua conexão com a internet e tente novamente.",
+      "action": "Tentar Novamente"
+    },
+    "server": {
+      "title": "Erro do Servidor",
+      "message": "O servidor encontrou um erro ao processar sua solicitação. Por favor, tente novamente em alguns momentos.",
+      "action": "Tentar Novamente"
+    },
+    "generic": {
+      "title": "Algo Deu Errado",
+      "message": "Ocorreu um erro inesperado. Por favor, tente novamente ou entre em contato com o suporte se o problema continuar.",
+      "action": "Tentar Novamente"
+    }
   }
 }

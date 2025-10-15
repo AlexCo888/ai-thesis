@@ -105,5 +105,36 @@
   },
   "citation": {
     "jumpToPage": "跳转到第{page}页"
+  },
+  "errors": {
+    "retry": "重试",
+    "technicalDetails": "技术详情",
+    "quotaExceeded": {
+      "title": "API配额已超限",
+      "message": "AI服务已达到使用限制。请稍等片刻后重试，或稍后再试。",
+      "retryIn": "{seconds}秒后重试",
+      "retryLater": "稍后重试",
+      "learnMore": "了解更多"
+    },
+    "authentication": {
+      "title": "身份验证错误",
+      "message": "验证您的访问权限时出现问题。请刷新页面，如果问题仍然存在，请联系支持人员。",
+      "action": "刷新页面"
+    },
+    "network": {
+      "title": "连接错误",
+      "message": "无法连接到AI服务。请检查您的互联网连接并重试。",
+      "action": "重试"
+    },
+    "server": {
+      "title": "服务器错误",
+      "message": "服务器在处理您的请求时遇到错误。请稍后再试。",
+      "action": "重试"
+    },
+    "generic": {
+      "title": "出现问题",
+      "message": "发生了意外错误。请重试，如果问题继续存在，请联系支持人员。",
+      "action": "重试"
+    }
   }
 }

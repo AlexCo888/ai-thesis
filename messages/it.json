@@ -105,5 +105,36 @@
   },
   "citation": {
     "jumpToPage": "Vai alla pagina {page}"
+  },
+  "errors": {
+    "retry": "Riprova",
+    "technicalDetails": "Dettagli Tecnici",
+    "quotaExceeded": {
+      "title": "Quota API Superata",
+      "message": "Il servizio IA ha raggiunto il limite di utilizzo. Attendere qualche istante e riprovare, o tornare più tardi.",
+      "retryIn": "Riprova tra {seconds}s",
+      "retryLater": "Riprova Più Tardi",
+      "learnMore": "Per Saperne di Più"
+    },
+    "authentication": {
+      "title": "Errore di Autenticazione",
+      "message": "Si è verificato un problema durante la verifica del tuo accesso. Aggiorna la pagina o contatta l'assistenza se il problema persiste.",
+      "action": "Aggiorna Pagina"
+    },
+    "network": {
+      "title": "Errore di Connessione",
+      "message": "Impossibile connettersi al servizio IA. Controlla la tua connessione Internet e riprova.",
+      "action": "Riprova"
+    },
+    "server": {
+      "title": "Errore del Server",
+      "message": "Il server ha riscontrato un errore durante l'elaborazione della tua richiesta. Riprova tra qualche istante.",
+      "action": "Riprova"
+    },
+    "generic": {
+      "title": "Qualcosa è Andato Storto",
+      "message": "Si è verificato un errore imprevisto. Riprova o contatta l'assistenza se il problema persiste.",
+      "action": "Riprova"
+    }
   }
 }

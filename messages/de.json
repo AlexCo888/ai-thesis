@@ -105,6 +105,37 @@
   },
   "citation": {
     "jumpToPage": "Zur Seite {page} springen"
+  },
+  "errors": {
+    "retry": "Erneut Versuchen",
+    "technicalDetails": "Technische Details",
+    "quotaExceeded": {
+      "title": "API-Kontingent Überschritten",
+      "message": "Der KI-Dienst hat sein Nutzungslimit erreicht. Bitte warten Sie einen Moment und versuchen Sie es erneut, oder kommen Sie später zurück.",
+      "retryIn": "Erneut versuchen in {seconds}s",
+      "retryLater": "Später Erneut Versuchen",
+      "learnMore": "Mehr Erfahren"
+    },
+    "authentication": {
+      "title": "Authentifizierungsfehler",
+      "message": "Es gab ein Problem bei der Überprüfung Ihres Zugriffs. Bitte aktualisieren Sie die Seite oder wenden Sie sich an den Support, wenn das Problem weiterhin besteht.",
+      "action": "Seite Aktualisieren"
+    },
+    "network": {
+      "title": "Verbindungsfehler",
+      "message": "Verbindung zum KI-Dienst nicht möglich. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.",
+      "action": "Erneut Versuchen"
+    },
+    "server": {
+      "title": "Serverfehler",
+      "message": "Der Server ist auf einen Fehler gestoßen, während Ihre Anfrage verarbeitet wurde. Bitte versuchen Sie es in einem Moment erneut.",
+      "action": "Erneut Versuchen"
+    },
+    "generic": {
+      "title": "Etwas ist Schiefgelaufen",
+      "message": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut oder wenden Sie sich an den Support, wenn das Problem weiterhin besteht.",
+      "action": "Erneut Versuchen"
+    }
   }
 }
 

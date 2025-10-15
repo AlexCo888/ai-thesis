@@ -105,5 +105,36 @@
   },
   "citation": {
     "jumpToPage": "ページ{page}にジャンプ"
+  },
+  "errors": {
+    "retry": "再試行",
+    "technicalDetails": "技術的な詳細",
+    "quotaExceeded": {
+      "title": "APIクォータ超過",
+      "message": "AIサービスが使用制限に達しました。少し待ってから再試行するか、後で戻ってきてください。",
+      "retryIn": "{seconds}秒後に再試行",
+      "retryLater": "後で再試行",
+      "learnMore": "詳しく見る"
+    },
+    "authentication": {
+      "title": "認証エラー",
+      "message": "アクセスの確認中に問題が発生しました。ページを更新するか、問題が続く場合はサポートにお問い合わせください。",
+      "action": "ページを更新"
+    },
+    "network": {
+      "title": "接続エラー",
+      "message": "AIサービスに接続できません。インターネット接続を確認して再試行してください。",
+      "action": "再試行"
+    },
+    "server": {
+      "title": "サーバーエラー",
+      "message": "リクエストの処理中にサーバーでエラーが発生しました。少し待ってから再試行してください。",
+      "action": "再試行"
+    },
+    "generic": {
+      "title": "問題が発生しました",
+      "message": "予期しないエラーが発生しました。再試行するか、問題が続く場合はサポートにお問い合わせください。",
+      "action": "再試行"
+    }
   }
 }
