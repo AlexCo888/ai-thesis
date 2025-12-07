@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "ingest": "pnpm exec tsx ./src/scripts/pinecone-ingest.ts",
-    "migrate": "pnpm exec tsx ./src/scripts/pinecone-migrate.ts",
-    "preinstall": "node preinstall.js"
+    "migrate": "pnpm exec tsx ./src/scripts/pinecone-migrate.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^2.0.20",
@@ -35,7 +34,7 @@
     "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.545.0",
     "nanoid": "^5.1.6",
-    "next": "15.5.4",
+    "next": "15.5.7",
     "next-intl": "^4.3.12",
     "pdfjs-dist": "^5.4.296",
     "pg": "^8.16.3",
