@@ -14,7 +14,7 @@ Implemented a complete error handling system with:
 - **Actionable guidance** on how to resolve issues
 - **Automatic retry capabilities** where appropriate
 - **External documentation links** for complex issues
-- **Technical details** (collapsible) for debugging
+- **Technical details** (collapsible) for debugging 
 
 ## Changes Made
 
