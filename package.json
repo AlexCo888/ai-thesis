@@ -34,7 +34,7 @@
     "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.545.0",
     "nanoid": "^5.1.6",
-    "next": "15.5.7",
+    "next": "15.5.9",
     "next-intl": "^4.3.12",
     "pdfjs-dist": "^5.4.296",
     "pg": "^8.16.3",
